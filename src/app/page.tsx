@@ -3,30 +3,28 @@ import { SanityDocument } from "next-sanity";
 
 import { sanityFetch } from "@/app/client";
 
-const EVENTS_QUERY = `*[
-  _type == "event"
-  && defined(slug.current)
-]{_id, name, slug, date}|order(date desc)`;
-
+import Navigation from "./navigation";
 export default async function IndexPage() {
-    const events = await sanityFetch<SanityDocument[]>({query: EVENTS_QUERY});
     return (
-        <main className="flex bg-gray-100 min-h-screen flex-col p-24 gap-12">
-        <h1 className="text-4xl font-bold tracking-tighter">
-            Events
-        </h1>
-        <ul className="grid grid-cols-1 gap-12 lg:grid-cols-2">
-            {events.map((event) => (
-                <li className="bg-white p-4 rounded-lg" key={event._id} >
-                    <Link className="hover:underline" href={`/events/${event.slug.current}`} >
-                        <h2 className="text-xl font-semibold">{event?.name}</h2>
-                        <p className="text-gray-500">
-                            {new Date(event?.date).toLocaleDateString()}
-                        </p>
-                    </Link>
-                </li>
-            ))}
-        </ul>
-        </main>
+        <div className="homeWrapper">
+            <Navigation/>
+
+            <aside className="news">
+                <h2>Senaste nyheten: Biljetter snart tillgängliga för VänCon!</h2>
+                <img src="https://picsum.photos/200/75" className="mascot" alt="a placeholder image"/>
+                <p>För alla anime- och spelentusiaster är det äntligen dags att markera kalendern och förbereda sig för en helg full av äventyr och gemenskap! Evenemanget, som lovar att vara en hängiven hyllning till anime, spel och det värdefulla bandet mellan likasinnade, meddelar att biljetterna... <Link href="#" className="link">fortsätt läsa här</Link></p>
+            </aside>
+            
+            <main className="mainContent"> 
+                <h1>VänCon 2025</h1>
+                <h3>När glöden svalnat, ur askan ska vi återuppstå...</h3>
+                <p className="preface">Välkommen till en helg full av gemenskap, glädje och äventyr! Vi är så glada att du har anslutit dig till vårt speciella evenemang där vi hyllar vår kärlek till anime, spel och viktigast av allt, varandra.</p>
+                <p>Detta är inte bara ett tillfälle att dyka in i fantastiska världar av anime och spel, utan också en plats där alla är välkomna, oavsett bakgrund, intressen eller erfarenheter. Vi tror på att skapa en atmosfär där varje individ kan känna sig inkluderad, sedd och hörd.</p>
+                <p>Under denna helg kommer vi att utforska otaliga dimensioner av animevärlden, dela våra favoritminnen från spelens värld och skapa nya, oförglömliga ögonblick tillsammans. Oavsett om du är en erfaren animeentusiast, en ivrig gamer eller bara nyfiken på att utforska, så är detta din plats att vara dig själv och skapa meningsfulla band med andra likasinnade.</p>
+                <p>Så släpp loss din inre otaku, vässa dina kontroller och förbered dig på att omfamna gemenskapen som bara ett evenemang som detta kan erbjuda. Låt oss tillsammans skapa en helg fylld av skratt, vänskap och spännande äventyr!</p>
+                <p>Välkommen till vår värld. Välkommen hem.</p>
+                <p className="fineprint">Just a lil fineprint.</p>
+            </main>
+        </div>
     );
 }
