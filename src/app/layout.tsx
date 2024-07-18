@@ -27,8 +27,11 @@ export default function RootLayout({
             <div className="pageWrapper">
                 {children}
             </div>
+
             <footer>
-                <p>Våra sponsorer</p>
+                {/* <p>Våra sponsorer</p> */}
+
+                <p className="fineprint">Website made by <a href="https://github.com/MonBjo">MonBjo</a></p>
             </footer>
         </body>
         </html>
