@@ -2,6 +2,8 @@ import Link from "next/link";
 import { SanityDocument } from "next-sanity";
 import { sanityFetch } from "@/app/client";
 
+import './navigation.css';
+
 const EVENTS_QUERY_MENU = `*[
     _type == "event"
     && defined(slug.current)

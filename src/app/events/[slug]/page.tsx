@@ -53,7 +53,7 @@ export default async function EventPage({ params, }: { params: { slug: string };
     return (
         <div className="layoutWrapper">
             <Navigation/>
-            <main className="mainContent">
+            <main className="mainContent eventPage">
                 <div className="grid items-top gap-12 sm:grid-cols-2">
                     <Image
                     src={eventImageUrl || "https://via.placeholder.com/550x310"}

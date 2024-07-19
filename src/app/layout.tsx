@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { Lemon } from "next/font/google";
+import Header from "./header";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,14 +17,12 @@ const lemon = Lemon({
     display: "swap",
 });
 
-export default function RootLayout({
-    children, 
-    }: {
-        children: React.ReactNode
-    }) {
+export default function RootLayout({ children, }: { children: React.ReactNode }) {
+
     return (
         <html lang="en" className={lemon.className}>
         <body>
+            <Header />
             <div className="pageWrapper">
                 {children}
             </div>
