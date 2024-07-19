@@ -51,7 +51,7 @@ export default async function EventPage({ params, }: { params: { slug: string };
     ).toLocaleTimeString();
     
     return (
-        <div className="homeWrapper">
+        <div className="layoutWrapper">
             <Navigation/>
             <main className="mainContent">
                 <div className="grid items-top gap-12 sm:grid-cols-2">

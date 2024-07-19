@@ -59,28 +59,23 @@ body {
 .pageWrapper {
     width: 100vw;
     height: 100vh;
-    /* max-height: 90%; */
-    flex-grow: 1;
     border: 1px solid gray;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    /* If footer, add these. Maybe. */
+    /* max-height: 90%; */
+    /* flex-grow: 1; */
     /* background: url(background.svg);
     background-size: cover;
     background-position: center center; */
 }
 
-footer {
-    position: absolute;
-    right: 2rem;
-    bottom: 1rem;
-    /* min-height: 5rem; */
-    /* padding: 0.5rem; */
-    /* background-color: white; */
-    /* border-top-left-radius: var(--border-radius); */
-    /* border-top-right-radius: var(--border-radius); */
-}
-
 .layoutWrapper {
     margin: 5rem auto;
     max-width: 70rem;
+    width: fit-content;
     display: grid;
     grid-template-areas: 
     "nav news"
@@ -115,8 +110,6 @@ footer {
     border-bottom-left-radius: var(--border-radius);
     padding: 0.5rem 1rem;
     background-color: #fafafa75;
-    /* min-width: 10rem;
-    max-width: 12rem; */
     width: 10rem;
     
     >:nth-child(1) {
@@ -146,7 +139,9 @@ footer {
     grid-area: main;
 
     position: relative;
-    height: 500px;
+    width: fit-content;
+    /* height: 500px; */
+    max-height: 30rem;
     border: var(--border-style);
     border-radius: var(--small-border-radius);
     border-bottom-right-radius: var(--border-radius);
