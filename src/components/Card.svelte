@@ -1,31 +1,32 @@
 <script lang="ts">
 	import { formatDate } from '$lib/utils';
 	import { urlFor } from '$lib/utils/image';
+	// import type { PageData } from './$types';
 	import type { Post } from '$lib/utils/sanity';
 
 	export let post: Post;
+	console.log(post);
 </script>
 
 <div class="card">
-	{#if post.mainImage}
+	{#if post.image}
 		<img
 			class="card__cover"
-			src={urlFor(post.mainImage).width(500).height(300).url()}
-			alt="Cover image for {post.title}"
+			src={urlFor(post.image).width(500).height(300).url()}
+			alt="Cover image for {post.name}"
 		/>
 	{:else}
 		<div class="card__cover--none" />
 	{/if}
 
 	<div class="card__container">
-		<h3 class="card__title">
+		<h3 class="card__name">
 			<a class="card__link" href={`/post/${post.slug.current}`}>
-				{post.title}
+				{post.name}
 			</a>
 		</h3>
-		<p class="card__excerpt">{post.excerpt}</p>
 		<p class="card__date">
-			{formatDate(post._createdAt)}
+			{post.date}
 		</p>
 	</div>
 </div>

@@ -13,5 +13,6 @@
 		{/each}
 	{:else}
 		<Welcome />
+		<p>{JSON.stringify(data)}</p>
 	{/if}
 </section>
