@@ -2,21 +2,12 @@
 	import { PortableText } from '@portabletext/svelte';
 	import { formatDate } from '$lib/utils';
 	import { urlFor } from '$lib/utils/image';
-	// import Navigation from '../../../components/Navigation.svelte';
     import TextAreaShadow from '../../../components/TextAreaShadow.svelte';
 	
 	import type { PageData } from './$types';
-	// import type { Post } from '$lib/utils/sanity';
 
 	export let data: PageData;
-	// export let posts: Array<Post> = data.posts;
 </script>
-
-<!-- {#if data.posts.length}
-	<Navigation {posts}/>
-{:else}
-	<p>I'm sorry, there seems to be something wrong with the navigation.</p>
-{/if} -->
 
 <article>
 	{#if data.image}

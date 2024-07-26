@@ -1,7 +1,7 @@
 <aside>
 	<img src="https://picsum.photos/100" alt="mascot" />
 	<h3>Senaste nyheten:</h3>
-	<p>news here plz</p>
+	<p>Lorem ipsum odor amet, consectetuer adipiscing elit. At metus habitasse cursus fermentum penatibus curae. Sodales nisl risus cursus vivamus, laoreet elit iaculis! <a href="#">... fortsätt läsa.</a></p>
 </aside>
 
 <style>

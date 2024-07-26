@@ -1,5 +1,11 @@
+<script>
+    import Navigation from "../components/Navigation.svelte";
+
+</script>
+
 <main>
 	<div>
+		<Navigation />
 		<slot />
 	</div>
 </main>

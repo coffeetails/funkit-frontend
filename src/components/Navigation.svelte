@@ -1,17 +1,29 @@
 <script lang="ts">
-	import type { Post } from '$lib/utils/sanity';
+	// import type { Post } from '$lib/utils/sanity';
+	import { getPosts } from '$lib/utils/sanity';
+	// import { postsReadOnly } from '../store';
 
-	export let posts: Array<Post>;
+	// let posts: Array<Post>;
+	// postsReadOnly.subscribe(async (value) => console.log(value) );
+	
+	// export let posts: Array<Post>;
 </script>
 
 <nav>
-	<h1>FunKit</h1>
+	<h1>Fun&#8203;Kit</h1>
 	<h3>Meny</h3>
-	<ul>
-		{#each posts as post}
-		<li><a href={`/post/${post.slug.current}`}>{post.name}</a></li>
-		{/each}
-	</ul>
+	{#await getPosts()}
+		<p>loading menu</p>		
+	{:then values} 
+		<ul>
+			{#each values as post}
+			<li><a href={`/post/${post.slug.current}`}>{post.name}</a></li>
+			{/each}
+		</ul>
+	{:catch error}
+		<p>Something went wrong: {error.message}</p>
+		{console.log("error loading menu items: ", error)}
+	{/await}
 </nav>
 
 <style>
@@ -46,6 +58,9 @@
 	a {
 		display: inline-block;
 		width: 100%;
+		font-family: "Lemon", serif;
+		font-weight: 400;
+		font-style: normal;
 	}
 
 @media (max-width: 670px) {

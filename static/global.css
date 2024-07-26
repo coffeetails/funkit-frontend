@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Lemon&display=swap');
 
 :root {
     --border-radius: 25px;
@@ -10,10 +11,15 @@
     padding: 0;
     margin: 0;
     transition: 0.1s;
+    font-family: Roboto, Oxygen, Ubuntu, 'Helvetica Neue', sans-serif;
 }
 
 
-/* The default font is Lemon, modified at layout.tsx */
+h1,h2,h3 {
+    font-family: "Lemon", serif;
+    font-weight: 400;
+    font-style: normal;
+}
 h1 { 
     font-size: 2rem; 
     padding: 0.25rem 0;
