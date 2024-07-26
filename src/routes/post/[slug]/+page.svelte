@@ -2,29 +2,72 @@
 	import { PortableText } from '@portabletext/svelte';
 	import { formatDate } from '$lib/utils';
 	import { urlFor } from '$lib/utils/image';
+	// import Navigation from '../../../components/Navigation.svelte';
+    import TextAreaShadow from '../../../components/TextAreaShadow.svelte';
+	
 	import type { PageData } from './$types';
+	// import type { Post } from '$lib/utils/sanity';
 
 	export let data: PageData;
+	// export let posts: Array<Post> = data.posts;
 </script>
 
-<section class="post">
-	{#if data.mainImage}
+<!-- {#if data.posts.length}
+	<Navigation {posts}/>
+{:else}
+	<p>I'm sorry, there seems to be something wrong with the navigation.</p>
+{/if} -->
+
+<article>
+	{#if data.image}
 		<img
-			class="post__cover"
-			src={urlFor(data.mainImage).url()}
-			alt="Cover image for {data.title}"
+			
+			src={urlFor(data.image).url()}
+			alt="Cover image for {data.name}"
 		/>
 	{:else}
-		<div class="post__cover--none" />
+		<div />
 	{/if}
-	<div class="post__container">
-		<h1 class="post__title">{data.title}</h1>
-		<p class="post__excerpt">{data.excerpt}</p>
-		<p class="post__date">
-			{formatDate(data._createdAt)}
-		</p>
-		<div class="post__content">
-			<PortableText value={data.body} />
-		</div>
+	<div>
+		<h1>{data.name}</h1>
+		<p>{formatDate(data.date)}</p>
+		<div><PortableText value={data.details} /></div>
+		<p>Event type: {data.eventType}</p>
+		<p>Doors open: {data.doorsOpen}</p>
+		<p>Venue: {data.venue?.name}</p>
+		<p>Headline: {data.headline?.name}</p>
+		<p>Tickets: {data.tickets}</p>
 	</div>
-</section>
+	<TextAreaShadow />
+</article>
+
+<style>
+	article {
+		position: relative;
+		width: fit-content;
+		max-height: 40rem;
+		margin: 0.25rem;
+		border: var(--border-style);
+		border-radius: var(--small-border-radius);
+		border-bottom-right-radius: var(--border-radius);
+		border-top-right-radius: var(--border-radius);
+		padding: 0.5rem 2rem;
+		background-color: #fafafa;
+		overflow: scroll;
+
+	}
+	
+	/* h1, h2, h3 {
+		text-align: center;
+	} */
+
+	@media (max-width: 670px) {
+		article {
+			border-top-left-radius: var(--border-radius);
+			border-bottom-left-radius: var(--border-radius);
+		}
+	}
+
+
+
+</style>

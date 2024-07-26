@@ -6,7 +6,7 @@ export const load = (async () => {
 	const posts = await getPosts();
 
 	if (posts) {
-		console.log("posts", posts);
+		// console.log("posts", posts);
 		return {
 			posts
 		};

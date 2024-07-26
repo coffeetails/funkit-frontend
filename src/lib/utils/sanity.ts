@@ -18,15 +18,13 @@ export const client = createClient({
 });
 
 export async function getPosts() {
-	console.log("getPosts", client);
 	return await client.fetch(
-		groq`*[_type == "event" && defined(slug.current)]{_id, name, slug, date}|order(date desc)`
+		groq`*[_type == "event" && defined(slug.current)]|order(date desc)`
 		// groq`*[_type == "event" && defined(slug.current)] | order(_createdAt desc)`
 	);
 }
 
 export async function getPost(slug: string) {
-	console.log("getPost", client);
 	return await client.fetch(groq`*[_type == "event" && slug.current == $slug][0]`, {
 		slug
 	});
@@ -35,16 +33,15 @@ export async function getPost(slug: string) {
 // Make sure this matches whats in the studio
 // TODO: Check types
 export interface Post {
-	_type: 'post';
-	// _createdAt: string;
+	_type: 'event';
 	name?: string;
 	slug: Slug;
 	eventType?: string;
 	date?: Date; 
 	doorsOpen?: number;
 	venue: Reference;
-	headline?: Reference;
-	image?: ImageAsset; // TODO: Not working
+	headline?: string;
+	image?: ImageAsset;
 	details?: Array<BlockComponentProps>
 	tickets?: string;
 }
