@@ -9,6 +9,8 @@
 	// export let posts: Array<Post>;
 </script>
 
+<!-- TODO: Add a "skip menu" link for A11Y -->
+
 <nav>
 	<h1>Fun&#8203;Kit</h1>
 	<h3>Meny</h3>
