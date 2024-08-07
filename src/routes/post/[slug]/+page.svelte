@@ -3,14 +3,15 @@
 	import { formatDate } from '$lib/utils';
 	import { urlFor } from '$lib/utils/image';
     import TextAreaShadow from '../../../components/TextAreaShadow.svelte';
-	
 	import type { PageData } from './$types';
-
+	
 	export let data: PageData;
+	console.log(data.page);
+	
 </script>
 
 <article>
-	{#if data.image}
+	<!-- {#if data.image}
 		<img
 			
 			src={urlFor(data.image).url()}
@@ -28,7 +29,7 @@
 		<p>Venue: {data.venue?.name}</p>
 		<p>Headline: {data.headline?.name}</p>
 		<p>Tickets: {data.tickets}</p>
-	</div>
+	</div> -->
 	<TextAreaShadow />
 </article>
 

@@ -17,6 +17,29 @@ export const client = createClient({
 	apiVersion: '2024-01-01' // date of setup
 });
 
+
+export async function getPage(slug: string) {
+	console.log("getPage", slug);
+	
+	return await client.fetch(
+		groq`*[_type == "page" && slug.current == "${slug}" && parentpage == true]`
+	);
+}
+
+export async function getPageMenu(slug: string) {
+	console.log("getPageMenu", slug);
+	
+	return await client.fetch(
+		groq`*[_type == "page" && slug.current == "${slug}" && parentpage == true]{childpage[]-> {slug, title} }`
+	);
+}
+
+export async function getSponsors() {
+	return await client.fetch(
+		groq``
+	);
+}
+
 export async function getPosts() {
 	return await client.fetch(
 		groq`*[_type == "event" && defined(slug.current)]|order(date desc)`

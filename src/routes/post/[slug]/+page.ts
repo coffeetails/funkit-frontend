@@ -1,12 +1,19 @@
+import { getPage } from '$lib/utils/sanity';
 import { error } from '@sveltejs/kit';
 import type { PageLoad } from './$types';
-import { getPost } from '$lib/utils/sanity';
 
-export const ssr = false;
+console.log("snel hest");
+
 
 export const load = (async ({ params }) => {
-	const post = await getPost(params.slug);
-	if (post) return post;
+	const page = await getPage(params.slug);
 
-	throw error(404, 'Not found');
+	if (page) {
+		console.log("page load", page); 
+		return {
+			page
+		};
+	}
+
+	throw error(404, 'Page not found');
 }) satisfies PageLoad;

@@ -1,14 +1,14 @@
-import { getPosts } from '$lib/utils/sanity';
+import { getPage } from '$lib/utils/sanity';
 import { error } from '@sveltejs/kit';
 import type { PageLoad } from './$types';
 
-export const load = (async () => {
-	const posts = await getPosts();
+export const load = (async ({ params }) => {
+	const page = await getPage("/");
 
-	if (posts) {
-		// console.log("posts", posts);
+	if (page) {
+		console.log("page load", page);
 		return {
-			posts
+			page
 		};
 	}
 

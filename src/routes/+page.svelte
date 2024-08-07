@@ -1,20 +1,19 @@
 <script lang="ts">
 	import News from '../components/News.svelte';
     import TextAreaShadow from '../components/TextAreaShadow.svelte';
+    import { PortableText } from '@portabletext/svelte';
+	import type { PageData } from './$types';
 
+	export let data: PageData;
+	console.log("page data",data.page[0]);
+	
 </script>
 
 <section>
 	<News />
 	<article>
-		<p>Lorem ipsum odor amet, consectetuer adipiscing elit. At metus habitasse cursus fermentum penatibus curae. Sodales nisl risus cursus vivamus, laoreet elit iaculis! Laoreet dignissim commodo amet; a parturient id. Dignissim velit pretium dapibus interdum fusce tristique rhoncus fringilla. Finibus consectetur penatibus elit donec finibus ridiculus erat finibus. Lobortis fusce senectus velit cras himenaeos penatibus cubilia. Nunc eros pharetra natoque dignissim suscipit odio sociosqu tempus. Lorem lacinia porttitor vivamus laoreet aliquam arcu molestie.</p>
-
-		<p>Sollicitudin ac ridiculus nostra posuere maximus. Ante nascetur a litora, conubia eros suspendisse cubilia. Litora aliquam placerat porta interdum suspendisse. Rutrum ornare ipsum integer; habitant facilisi enim. Leo condimentum curabitur ipsum dolor ante vitae purus. Ante fames magna posuere bibendum sapien sit. Quam congue natoque nibh finibus et inceptos gravida. Mi bibendum maecenas donec maximus parturient euismod viverra accumsan. Curae imperdiet interdum aenean magna mattis.</p>
-
-		<p>Lorem ipsum odor amet, consectetuer adipiscing elit. At metus habitasse cursus fermentum penatibus curae. Sodales nisl risus cursus vivamus, laoreet elit iaculis! Laoreet dignissim commodo amet; a parturient id. Dignissim velit pretium dapibus interdum fusce tristique rhoncus fringilla. Finibus consectetur penatibus elit donec finibus ridiculus erat finibus. Lobortis fusce senectus velit cras himenaeos penatibus cubilia. Nunc eros pharetra natoque dignissim suscipit odio sociosqu tempus. Lorem lacinia porttitor vivamus laoreet aliquam arcu molestie.</p>
-
-		<p>Sollicitudin ac ridiculus nostra posuere maximus. Ante nascetur a litora, conubia eros suspendisse cubilia. Litora aliquam placerat porta interdum suspendisse. Rutrum ornare ipsum integer; habitant facilisi enim. Leo condimentum curabitur ipsum dolor ante vitae purus. Ante fames magna posuere bibendum sapien sit. Quam congue natoque nibh finibus et inceptos gravida. Mi bibendum maecenas donec maximus parturient euismod viverra accumsan. Curae imperdiet interdum aenean magna mattis.</p>
-
+		<PortableText value={data.page[0].content} />
+		
 		<TextAreaShadow />
 	</article>
 </section>

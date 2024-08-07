@@ -1,12 +1,8 @@
 <script lang="ts">
-	// import type { Post } from '$lib/utils/sanity';
-	import { getPosts } from '$lib/utils/sanity';
-	// import { postsReadOnly } from '../store';
+	import { getPageMenu, getPosts } from '$lib/utils/sanity';
+	import { page } from '$app/stores';  
 
-	// let posts: Array<Post>;
-	// postsReadOnly.subscribe(async (value) => console.log(value) );
-	
-	// export let posts: Array<Post>;
+	getPageMenu($page.url.pathname);
 </script>
 
 <!-- TODO: Add a "skip menu" link for A11Y -->
@@ -14,18 +10,23 @@
 <nav>
 	<h1>Fun&#8203;Kit</h1>
 	<h3>Meny</h3>
-	{#await getPosts()}
+
+	<!-- {#await getPageMenu($page.url.pathname)} -->
+	{#await getPageMenu("/")}
 		<p>loading menu</p>		
 	{:then values} 
+		<!-- {console.log(values[0].childpage)} -->
 		<ul>
-			{#each values as post}
-			<li><a href={`/post/${post.slug.current}`}>{post.name}</a></li>
+			{#each values[0].childpage as page}
+			<!-- {console.log("slug",page.slug.current)} -->
+			<li><a href={`/${page.slug.current}`}>{page.title}</a></li>
 			{/each}
 		</ul>
 	{:catch error}
 		<p>Something went wrong: {error.message}</p>
 		{console.log("error loading menu items: ", error)}
 	{/await}
+
 </nav>
 
 <style>
