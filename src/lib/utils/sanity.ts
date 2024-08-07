@@ -22,7 +22,8 @@ export async function getPage(slug: string) {
 	console.log("getPage", slug);
 	
 	return await client.fetch(
-		groq`*[_type == "page" && slug.current == "${slug}" && parentpage == true]`
+		groq`*[_type == "page" && slug.current == "${slug}"]`
+		// groq`*[_type == "page" && slug.current == "${slug}" && parentpage == true]`
 	);
 }
 

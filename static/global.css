@@ -32,12 +32,9 @@ h3 {
     font-size: 1.25rem; 
     padding: 0.25rem 0;
 }
-.preface { 
-    font-size: 1.15rem; 
-    line-height: 1.5;
-    letter-spacing: 0.5px;
-    padding: 0.25rem 0;
-}
+/* TODO */
+h4 {} 
+h5 {}
 p, .link {
     font-size: 1rem;
     font-family: Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;

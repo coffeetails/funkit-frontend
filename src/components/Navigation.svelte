@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { getPageMenu, getPosts } from '$lib/utils/sanity';
+	import { getPageMenu } from '$lib/utils/sanity';
 	import { page } from '$app/stores';  
 
 	getPageMenu($page.url.pathname);
@@ -38,7 +38,9 @@
 		border-bottom-left-radius: var(--border-radius);
 		padding: 0.5rem 1rem;
 		background-color: #fafafa75;
-		width: 10rem;
+		/* min-width: 10rem; */
+		width: fit-content;
+		max-width: 15rem;
 	}
     
     nav >:nth-child(1) {
