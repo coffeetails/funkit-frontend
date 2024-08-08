@@ -30,4 +30,10 @@
 		background-color: #fafafa;
 		overflow: scroll;
 	}
+
+	@media (max-width: 670px) {
+		article {
+			border-radius: var(--border-radius);
+		}
+	}
  </style>

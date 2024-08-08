@@ -1,6 +1,9 @@
 <script lang="ts">
 	import { getPageMenu } from '$lib/utils/sanity';
 	import { page } from '$app/stores'; 
+    import Header from './Header.svelte';
+	
+	let displayMobileMenu = false;
 	
 	console.log("Nav page info", $page);
 	// Note to self: 
@@ -14,7 +17,9 @@
 <!-- TODO: Add a "skip menu" link for A11Y -->
 <!-- TODO: Add a "back to funkit" link for sub-menues  -->
 
-<nav>
+<Header bind:displayMobileMenu />
+
+<nav class={displayMobileMenu?'open':''}>
 	<h1><a href="/">Fun&#8203;Kit</a></h1>
 	<h3>Meny</h3>
 
@@ -23,9 +28,9 @@
 		<p>loading menu</p>		
 	{:then values} 
 		<ul>
-			<li><a href={`/`}>Hem</a></li>
+			<li><a href={`/`} on:click={() => displayMobileMenu = false}>Hem</a></li>
 			{#each values[0].childpage as page}
-			<li><a href={`/${page.slug.current}`}>{page.title}</a></li>
+			<li><a href={`/${page.slug.current}`} on:click={() => displayMobileMenu = false}>{page.title}</a></li>
 			{/each}
 		</ul>
 	{:catch error}
@@ -48,22 +53,22 @@
 		max-width: 15rem;
 	}
     
-    h1 {
+    nav >:nth-child(1) {
         padding: 1rem 0rem;
         font-size: 3rem;
         text-align: center;
     }
-	h1 a {
+	nav >:nth-child(1) a {
 		font-family: "Lemon", serif;
 		border: none;
 	}
-	h1 a:hover {
+	nav >:nth-child(1) a:hover {
 		border: none;
 		background-color: transparent;
 		color: var(--black);
 	}
 
-    h3 {
+    nav >:nth-child(2) {
         padding: 1rem 1rem;
         text-align: center;
     }
@@ -87,13 +92,15 @@
 @media (max-width: 670px) {
 
     nav {
-        /* display: none; */
+        display: none;
+		/* opacity: 0; */
         position: absolute;
-        top: 4.5rem;
+        top: 5rem;
         bottom: 0.5rem;
         left: 0.5rem;
         right: 0.5rem;
         width: auto;
+		max-width: 100vw;
         z-index: 5;
         background-color: #fafafa;
         border-radius: var(--border-radius);
@@ -106,6 +113,14 @@
 		padding: 1rem 1rem;
 		text-align: center;
 		font-size: 2rem;
+	}
+
+	li {
+		margin: 0.5rem 1rem;
+	}
+
+	.open {
+		display: block;
 	}
 }
 </style>

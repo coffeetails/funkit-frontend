@@ -16,6 +16,9 @@
     font-family: Roboto, Oxygen, Ubuntu, 'Helvetica Neue', sans-serif;
     color: var(--font-color);
 }
+*:focus-visible, button:focus-visible {
+    outline: 4px solid #217776;
+}
 
 
 h1,h2,h3,h4,h5, h6 {
