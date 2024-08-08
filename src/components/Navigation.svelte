@@ -8,7 +8,8 @@
 <!-- TODO: Add a "skip menu" link for A11Y -->
 
 <nav>
-	<h1>Fun&#8203;Kit</h1>
+	<!-- <a href="/"><h1>Fun&#8203;Kit</h1></a> -->
+	<h1><a href="/">Fun&#8203;Kit</a></h1>
 	<h3>Meny</h3>
 
 	<!-- {#await getPageMenu($page.url.pathname)} -->
@@ -24,7 +25,6 @@
 		</ul>
 	{:catch error}
 		<p>Something went wrong: {error.message}</p>
-		{console.log("error loading menu items: ", error)}
 	{/await}
 
 </nav>
@@ -60,7 +60,11 @@
         /* font-size: 1.15rem; */
 	}
 
-	a {
+	h1 a {
+		font-family: "Lemon", serif;
+		text-decoration: none;
+	}
+ 	li a {
 		display: inline-block;
 		width: 100%;
 		font-family: "Lemon", serif;

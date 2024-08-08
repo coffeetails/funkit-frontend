@@ -14,7 +14,6 @@
 	main {
 		width: 100vw;
 		height: 100vh;
-		border: 1px solid gray;
 		padding: 1rem;
 		display: flex;
 		align-items: center;
