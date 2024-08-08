@@ -11,7 +11,7 @@
 </script>
 
 <article>
-    <h1>{data.page[0].title}</h1>
+    <h1 class="pageTitle">{data.page[0].title}</h1>
     <PortableText value={data.page[0].content} />
     <TextAreaShadow />
 </article>
@@ -30,8 +30,4 @@
 		background-color: #fafafa;
 		overflow: scroll;
 	}
-	
-	/* h1, h2, h3 {
-		text-align: center;
-} */
  </style>

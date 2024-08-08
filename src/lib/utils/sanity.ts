@@ -19,7 +19,7 @@ export const client = createClient({
 
 
 export async function getPage(slug: string) {
-	console.log("getPage", slug);
+	// console.log("getPage", slug);
 	
 	return await client.fetch(
 		groq`*[_type == "page" && slug.current == "${slug}"]`
@@ -28,7 +28,7 @@ export async function getPage(slug: string) {
 }
 
 export async function getPageMenu(slug: string) {
-	console.log("getPageMenu", slug);
+	// console.log("getPageMenu", slug);
 	
 	return await client.fetch(
 		groq`*[_type == "page" && slug.current == "${slug}" && parentpage == true]{childpage[]-> {slug, title} }`

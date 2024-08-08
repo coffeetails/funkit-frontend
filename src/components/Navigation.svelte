@@ -1,14 +1,20 @@
 <script lang="ts">
 	import { getPageMenu } from '$lib/utils/sanity';
-	import { page } from '$app/stores';  
-
-	getPageMenu($page.url.pathname);
+	import { page } from '$app/stores'; 
+	
+	console.log("Nav page info", $page);
+	// Note to self: 
+	// $page.route.id might be a good way to see if I'm
+	// currently at a top level page or a sub page, since
+	// there will be multple levels of pages due to 
+	// events having their own menu.
+	
 </script>
 
 <!-- TODO: Add a "skip menu" link for A11Y -->
+<!-- TODO: Add a "back to funkit" link for sub-menues  -->
 
 <nav>
-	<!-- <a href="/"><h1>Fun&#8203;Kit</h1></a> -->
 	<h1><a href="/">Fun&#8203;Kit</a></h1>
 	<h3>Meny</h3>
 
@@ -16,10 +22,9 @@
 	{#await getPageMenu("/")}
 		<p>loading menu</p>		
 	{:then values} 
-		<!-- {console.log(values[0].childpage)} -->
 		<ul>
+			<li><a href={`/`}>Hem</a></li>
 			{#each values[0].childpage as page}
-			<!-- {console.log("slug",page.slug.current)} -->
 			<li><a href={`/${page.slug.current}`}>{page.title}</a></li>
 			{/each}
 		</ul>
@@ -43,33 +48,40 @@
 		max-width: 15rem;
 	}
     
-    nav >:nth-child(1) {
+    h1 {
         padding: 1rem 0rem;
         font-size: 3rem;
         text-align: center;
     }
-    nav >:nth-child(2) {
+	h1 a {
+		font-family: "Lemon", serif;
+		border: none;
+	}
+	h1 a:hover {
+		border: none;
+		background-color: transparent;
+		color: var(--black);
+	}
+
+    h3 {
         padding: 1rem 1rem;
         text-align: center;
     }
     
     ul, li {
         list-style-type: none;
-        /* margin: 0rem 0.5rem 0rem 0.5rem; */
-        padding: 0.5rem 0;
-        /* font-size: 1.15rem; */
+		padding: 0.25rem 0;
+		margin: 0;
 	}
 
-	h1 a {
-		font-family: "Lemon", serif;
-		text-decoration: none;
-	}
- 	li a {
+	li a {
 		display: inline-block;
 		width: 100%;
 		font-family: "Lemon", serif;
-		font-weight: 400;
-		font-style: normal;
+		border-bottom-color: transparent;
+	}
+	li a:hover {
+		border: 2px solid var(--black);
 	}
 
 @media (max-width: 670px) {
