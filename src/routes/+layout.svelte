@@ -21,7 +21,7 @@
 	}
 	div {
 		margin: auto;
-		margin-top: 5rem;
+		/* margin-top: 5rem; */
 		max-width: 70rem;
 		width: fit-content;
 		display: flex;

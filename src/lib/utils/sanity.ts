@@ -37,7 +37,11 @@ export async function getPageMenu(slug: string) {
 
 export async function getSponsors() {
 	return await client.fetch(
-		groq``
+		groq`*[_type == "sponsor"]{
+			name,
+  			"imageSrc": image.asset->url,
+            "imageAlt":image.alt,
+			details}`
 	);
 }
 

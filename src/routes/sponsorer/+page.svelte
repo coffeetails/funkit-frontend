@@ -1,0 +1,68 @@
+<script lang="ts">
+    import TextAreaShadow from '../../components/TextAreaShadow.svelte';
+    import { getSponsors } from '$lib/utils/sanity';
+</script>
+
+<article>
+	<h1>Våra sponsorer</h1>
+	{#await getSponsors()}
+		loading
+	{:then sponsors} 
+		{#each sponsors as sponsor}
+			<section>
+				<h4>{sponsor.name}</h4>
+				<img src={sponsor.imageSrc} alt={sponsor.imageAlt} />
+				<p>{sponsor.details?sponsor.details:" "}</p>
+			</section>
+		{/each}		
+	{/await}
+    <TextAreaShadow />
+</article>
+
+<style>
+	h1 {
+		width: 100%;
+		margin: 0 auto;
+	}
+
+	section {
+		border: var(--border-style);
+		border-radius: var(--border-radius);
+		box-shadow: 0.25rem 0.25rem 0.5rem #5e5e5e;
+		text-align: center;
+		padding: 0.5rem 1rem;
+		margin: 0.5rem;
+	}
+	img {
+		height: 10rem;
+	}
+	p {
+		text-align: left;
+	}
+
+	article {
+		position: relative;
+		width: fit-content;
+		max-height: 40rem;
+		margin: 0.25rem;
+		border: var(--border-style);
+		border-radius: var(--small-border-radius);
+		border-bottom-right-radius: var(--border-radius);
+		border-top-right-radius: var(--border-radius);
+		padding: 0.5rem 2rem;
+		background-color: #fafafa;
+		overflow: scroll;
+
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: space-around;
+		align-items: center;
+	}
+
+	@media (max-width: 670px) {
+		article {
+			border-radius: var(--border-radius);
+		}
+	}
+ </style>

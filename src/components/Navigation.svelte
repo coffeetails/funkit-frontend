@@ -5,7 +5,7 @@
 	
 	let displayMobileMenu = false;
 	
-	console.log("Nav page info", $page);
+	console.log("Nav page info", $page.route.id);
 	// Note to self: 
 	// $page.route.id might be a good way to see if I'm
 	// currently at a top level page or a sub page, since
@@ -32,6 +32,9 @@
 			{#each values[0].childpage as page}
 			<li><a href={`/${page.slug.current}`} on:click={() => displayMobileMenu = false}>{page.title}</a></li>
 			{/each}
+			<li><a href={`/sponsorer`} on:click={() => displayMobileMenu = false}>Sponsorer</a></li>
+
+			<li><a href={`/`} on:click={() => displayMobileMenu = false}>Tillbaka</a></li>
 		</ul>
 	{:catch error}
 		<p>Something went wrong: {error.message}</p>
