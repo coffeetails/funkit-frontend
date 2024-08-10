@@ -22,42 +22,39 @@
 <style>
 	h1 {
 		width: 100%;
-		margin: 0 auto;
+		/* margin: 0 auto; */
+		/* grid-column: 1 / 5; */
 	}
 
 	section {
+		flex: 1 1 auto;
+
 		border: var(--border-style);
 		border-radius: var(--border-radius);
 		box-shadow: 0.25rem 0.25rem 0.5rem #5e5e5e;
 		text-align: center;
 		padding: 0.5rem 1rem;
-		margin: 0.5rem;
 	}
 	img {
-		height: 10rem;
+		max-height: 10rem;
 	}
 	p {
 		text-align: left;
 	}
 
 	article {
-		position: relative;
-		width: fit-content;
-		max-height: 40rem;
-		margin: 0.25rem;
-		border: var(--border-style);
 		border-radius: var(--small-border-radius);
 		border-bottom-right-radius: var(--border-radius);
 		border-top-right-radius: var(--border-radius);
-		padding: 0.5rem 2rem;
-		background-color: #fafafa;
-		overflow: scroll;
 
 		display: flex;
 		flex-direction: row;
 		flex-wrap: wrap;
-		justify-content: space-around;
-		align-items: center;
+		/* justify-content: space-between; */
+		/* justify-content: center;
+		align-content: stretch;
+		align-items: stretch; */
+		gap: 1.5rem;
 	}
 
 	@media (max-width: 670px) {
