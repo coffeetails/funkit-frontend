@@ -89,3 +89,14 @@ body {
     background-size: cover;
     background-position: center center;
 }
+
+article {
+    position: relative;
+    width: fit-content;
+    max-height: 40rem;
+    margin: 0.25rem;
+    border: var(--border-style);
+    padding: 0.5rem 2rem 3rem;
+    background-color: #fafafa;
+    overflow: scroll;
+}

@@ -8,27 +8,24 @@
     export let data: PageData;
     console.log(data.page);
     
+	// TODO: IMPORTANT: Add another level of [slug] pages to let a page have their own menu. - 2 weeks
+	// 		Is it possible to make this dynamic as well?
+	//		Should I even add another [slug] folder or 
+	//		can I continue to use this? 
 </script>
 
 <article>
     <h1 class="pageTitle">{data.page[0].title}</h1>
+	<!-- FIXME: PortableText property missing -->
     <PortableText value={data.page[0].content} />
     <TextAreaShadow />
 </article>
 
 <style>
 	article {
-		position: relative;
-		width: fit-content;
-		max-height: 40rem;
-		margin: 0.25rem;
-		border: var(--border-style);
 		border-radius: var(--small-border-radius);
 		border-bottom-right-radius: var(--border-radius);
 		border-top-right-radius: var(--border-radius);
-		padding: 0.5rem 2rem;
-		background-color: #fafafa;
-		overflow: scroll;
 	}
 
 	@media (max-width: 670px) {

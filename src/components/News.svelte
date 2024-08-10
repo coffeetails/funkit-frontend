@@ -2,6 +2,9 @@
 
 let link = "#";
 let newsTitle = "VänCon på G!";
+
+// TODO: Make the news section work (or remove it) - 1day
+
 </script>
 
 <aside>

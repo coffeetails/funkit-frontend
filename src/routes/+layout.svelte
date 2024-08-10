@@ -3,15 +3,15 @@
 
 </script>
 
-<main>
-	<div>
+<div class="contentWrapper">
+	<main>
 		<Navigation />
 		<slot />
-	</div>
-</main>
+	</main>
+</div>
 
 <style>
-	main {
+	div {
 		width: 100dvw;
 		height: 100dvh;
 		/* padding: 1rem; */
@@ -19,12 +19,13 @@
 		align-items: center;
 		justify-content: center;
 	}
-	div {
+	main {
 		margin: auto;
 		/* margin-top: 5rem; */
 		max-width: 70rem;
 		width: fit-content;
 		display: flex;
+		align-items: stretch;
 	}
 	
 	@media (max-width: 670px) {

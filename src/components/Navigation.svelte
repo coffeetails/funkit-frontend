@@ -14,8 +14,8 @@
 	
 </script>
 
-<!-- TODO: Add a "skip menu" link for A11Y -->
-<!-- TODO: Add a "back to funkit" link for sub-menues  -->
+<!-- FIXME: IMPORTANT: Add a "skip to content" link for A11Y - 1day -->
+<!-- TODO: IMPORTANT: Add a "back to funkit" link for sub-menues - 1day -->
 
 <Header bind:displayMobileMenu />
 
@@ -43,6 +43,10 @@
 </nav>
 
 <style>
+
+	/* FIXME: add wordbreak for sites with long name - 1day */
+	/* TODO: add the cool "bubble" to indicate what page you're on - 1week */
+
 	nav {
 		margin: 0.25rem;
 		border: var(--border-style);

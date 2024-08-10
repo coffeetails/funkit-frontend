@@ -12,6 +12,7 @@
 <section>
 	<News />
 	<article>
+		<!-- FIXME: PortableText property missing -->
 		<PortableText value={data.page[0].content} />
 		
 		<TextAreaShadow />
@@ -20,23 +21,10 @@
 
 <style>
 	article {
-		position: relative;
-		width: fit-content;
-		/* height: 500px; */
-		max-height: 30rem;
-		margin: 0.25rem;
-		border: var(--border-style);
 		border-radius: var(--small-border-radius);
 		border-bottom-right-radius: var(--border-radius);
-		padding: 0.5rem 2rem;
-		background-color: #fafafa;
-		overflow: scroll;
 	}
 	
-	/* h1, h2, h3 {
-		text-align: center;
-	} */
-
 	@media (max-width: 670px) {
 		article {
 			border-bottom-left-radius: var(--border-radius);

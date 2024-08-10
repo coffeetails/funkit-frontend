@@ -57,19 +57,3 @@ export async function getPost(slug: string) {
 		slug
 	});
 }
-
-// Make sure this matches whats in the studio
-// TODO: Check types
-export interface Post {
-	_type: 'event';
-	name?: string;
-	slug: Slug;
-	eventType?: string;
-	date?: Date; 
-	doorsOpen?: number;
-	venue: Reference;
-	headline?: string;
-	image?: ImageAsset;
-	details?: Array<BlockComponentProps>
-	tickets?: string;
-}
