@@ -10,8 +10,13 @@
 	{:then sponsors} 
 		{#each sponsors as sponsor}
 			<section>
-				<h4>{sponsor.name}</h4>
-				<img src={sponsor.imageSrc} alt={sponsor.imageAlt} />
+				{#if sponsor.link}
+					<h4><a href={sponsor.link}>{sponsor.name}</a></h4>
+					<a href={sponsor.link} class="imageLink"><img src={sponsor.imageSrc} alt={sponsor.imageAlt} /></a>
+				{:else}
+					<h4>{sponsor.name}</h4>
+					<img src={sponsor.imageSrc} alt={sponsor.imageAlt} />
+				{/if}
 				<p>{sponsor.details?sponsor.details:" "}</p>
 			</section>
 		{/each}		
@@ -40,6 +45,14 @@
 	}
 	p {
 		text-align: left;
+	}
+	.imageLink {
+		border: none;
+	}
+	a {
+		font-size: 1.50rem;
+		font-family: "Lemon", serif;
+		padding: 0.25rem 0;
 	}
 
 	article {

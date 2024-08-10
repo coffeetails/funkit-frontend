@@ -41,7 +41,8 @@ export async function getSponsors() {
 			name,
   			"imageSrc": image.asset->url,
             "imageAlt":image.alt,
-			details}`
+			details,
+			link}`
 	);
 }
 
