@@ -2,7 +2,8 @@
 	import { getPageMenu } from '$lib/utils/sanity';
 	import { page } from '$app/stores'; 
     import Header from './Header.svelte';
-	
+	import { getPage } from '$lib/utils/sanity';
+
 	let displayMobileMenu = false;
 	
 	console.log("Nav page info", $page.route.id);
@@ -23,7 +24,17 @@
 	<h1><a href="/">Fun&#8203;Kit</a></h1>
 	<h3>Meny</h3>
 
-	<!-- {#await getPageMenu($page.url.pathname)} -->
+	{#await getPageMenu($page.url.pathname)}
+	{console.log("")}
+	{:then value}
+	{console.log("page menu",value[0])}
+	{/await}
+	{#await getPage($page.url.pathname)}
+	{console.log("")}
+	{:then value}
+	{console.log("page info", value[0])}
+	{/await}
+
 	{#await getPageMenu("/")}
 		<p>loading menu</p>		
 	{:then values} 
