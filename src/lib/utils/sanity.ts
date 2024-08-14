@@ -23,7 +23,7 @@ export async function getPage(slug: string) {
 	
 	return await client.fetch(
 		groq`*[_type == "page" && slug.current == "${slug}"]`
-		// groq`*[_type == "page" && slug.current == "${slug}" && parentpage == true]`
+		// groq`*[_type == "page" && slug.current == "${slug}" && isParentPage == true]`
 	);
 }
 
@@ -31,7 +31,7 @@ export async function getPageMenu(slug: string) {
 	// console.log("getPageMenu", slug);
 	
 	return await client.fetch(
-		groq`*[_type == "page" && slug.current == "${slug}" && parentpage == true]{childpage[]-> {slug, title} }`
+		groq`*[_type == "page" && slug.current == "${slug}" && isParentPage == true]{childpage[]-> {slug, title} }`
 	);
 }
 

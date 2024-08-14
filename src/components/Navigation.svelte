@@ -25,23 +25,14 @@
 	<h3>Meny</h3>
 
 	{#await getPageMenu($page.url.pathname)}
-	{console.log("")}
-	{:then value}
-	{console.log("page menu",value[0])}
-	{/await}
-	{#await getPage($page.url.pathname)}
-	{console.log("")}
-	{:then value}
-	{console.log("page info", value[0])}
-	{/await}
-
-	{#await getPageMenu("/")}
+	<!-- {#await getPageMenu("/")} -->
 		<p>loading menu</p>		
 	{:then values} 
+	{console.log($page.url.pathname)}
 		<ul>
 			<li><a href={`/`} on:click={() => displayMobileMenu = false}>Hem</a></li>
 			{#each values[0].childpage as page}
-			<li><a href={`/${page.slug.current}`} on:click={() => displayMobileMenu = false}>{page.title}</a></li>
+				<li><a href={`/${page.slug.current}`} on:click={() => displayMobileMenu = false}>{page.title}</a></li>
 			{/each}
 			<li><a href={`/sponsorer`} on:click={() => displayMobileMenu = false}>Sponsorer</a></li>
 
