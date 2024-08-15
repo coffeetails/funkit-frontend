@@ -1,12 +1,42 @@
 <script lang="ts">
-	import { getPageMenu } from '$lib/utils/sanity';
+	import { getPageMenu, getPageMenuWIP } from '$lib/utils/sanity';
 	import { page } from '$app/stores'; 
     import Header from './Header.svelte';
 	import { getPage } from '$lib/utils/sanity';
 
 	let displayMobileMenu = false;
+
+	// let dynamicMenu = async () => {
+	async function dynamicMenu() {
+		let pageDataNav = await getPageMenuWIP($page.params.slug);
+		console.log("DynamicMenu: pageDataNav", pageDataNav);
+		
+		// NOTE: When on startpage pageDataNav is returned empty
+		// if(pageDataNav.length == 0) {
+		// 	console.log("return", pageDataNav.childpage);
+		// 	return pageDataNav.childpage;
+		// } 
+		
+		if(pageDataNav[0]) {
+			console.log("DynamicMenu: Slug", pageDataNav[0].slug.current);
+			console.log("DynamicMenu: isParentPage", pageDataNav[0].isParentPage);
+
+			if(pageDataNav[0].isParentPage) {
+				console.log("return", pageDataNav[0].childpage);
+				
+				return pageDataNav[0].childpage;
+			}
+		}
+		
+		if(pageDataNav.length > 1) {
+			console.log("wait what, why is pageDataNav longer than expected?", pageDataNav);
+			
+		}
+	}
+	console.log(dynamicMenu());
 	
-	console.log("Nav page info", $page.route.id);
+	// console.log("$page",$page.params.slug);
+	
 	// Note to self: 
 	// $page.route.id might be a good way to see if I'm
 	// currently at a top level page or a sub page, since
@@ -24,11 +54,11 @@
 	<h1><a href="/">Fun&#8203;Kit</a></h1>
 	<h3>Meny</h3>
 
-	{#await getPageMenu($page.url.pathname)}
-	<!-- {#await getPageMenu("/")} -->
+	<!-- {#await dynamicMenu()} -->
+	<!-- {#await getPageMenu(dynamicMenu)} -->
+	{#await getPageMenu("/")}
 		<p>loading menu</p>		
 	{:then values} 
-	{console.log($page.url.pathname)}
 		<ul>
 			<li><a href={`/`} on:click={() => displayMobileMenu = false}>Hem</a></li>
 			{#each values[0].childpage as page}

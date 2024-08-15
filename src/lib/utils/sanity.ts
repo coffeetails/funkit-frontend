@@ -26,6 +26,13 @@ export async function getPage(slug: string) {
 		// groq`*[_type == "page" && slug.current == "${slug}" && isParentPage == true]`
 	);
 }
+export async function getPageMenuWIP(slug: string) {
+	// console.log("getPageMenu", slug);
+	
+	return await client.fetch(
+		groq`*[_type == "page" && slug.current == "${slug}"]{slug, isParentPage, childpage[]-> {slug, title}}`
+	);
+}
 
 export async function getPageMenu(slug: string) {
 	// console.log("getPageMenu", slug);

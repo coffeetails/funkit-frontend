@@ -2,12 +2,11 @@ import { getPage } from '$lib/utils/sanity';
 import { error } from '@sveltejs/kit';
 import type { PageLoad } from './$types';
 
-console.log("snel hest");
 
 export const load = (async ({ params }) => {
     console.log("params", params);
     
-    const page = await getPage(params.slug);
+    const page = await getPage(params.topslug);
 
     if (page) {
         // console.log("page load", page); 

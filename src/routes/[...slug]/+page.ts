@@ -2,7 +2,6 @@ import { getPage } from '$lib/utils/sanity';
 import { error } from '@sveltejs/kit';
 import type { PageLoad } from './$types';
 
-console.log("snel hest");
 
 export const load = (async ({ params }) => {
     console.log("params", params);
