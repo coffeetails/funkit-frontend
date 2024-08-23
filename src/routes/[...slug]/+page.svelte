@@ -6,7 +6,7 @@
     import type { PageData } from './$types';
     
     export let data: PageData;
-	console.log("page data",data.page[0]);
+	// console.log("page data",data.page[0]);
     
 	// TODO: IMPORTANT: Add another level of [slug] pages to let a page have their own menu. - 2 weeks
 	// 		Is it possible to make this dynamic as well?

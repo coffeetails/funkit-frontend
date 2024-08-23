@@ -26,19 +26,44 @@ export async function getPage(slug: string) {
 		// groq`*[_type == "page" && slug.current == "${slug}" && isParentPage == true]`
 	);
 }
-export async function getPageMenuWIP(slug: string) {
-	// console.log("getPageMenu", slug);
-	
-	return await client.fetch(
-		groq`*[_type == "page" && slug.current == "${slug}"]{slug, isParentPage, childpage[]-> {slug, title}}`
-	);
-}
 
-export async function getPageMenu(slug: string) {
-	// console.log("getPageMenu", slug);
+export async function getPageMenu(currentPageSlug: string) {
+	// // // // // //\\ \\ \\ \\ \\ \\
+	// TODO: Add "home" to the menu \\
+	// TODO: Add "back to start"	\\
+	// // // // // //\\ \\ \\ \\ \\ \\
+
+	console.log("currentPageSlug:", currentPageSlug);
 	
+	// CURRENT PAGE MENU
+	let currentPageMenu = await client.fetch(
+		groq`*[_type == "page" && parentPage->slug.current == "${currentPageSlug}"]{title, slug}`
+	);
+	console.log("currentPageMenu:", currentPageMenu);
+	if(currentPageMenu.length > 0) {
+		return currentPageMenu;
+	}
+
+	// CHECK PARENT PAGE
+	let fetchParentPageSlug = await client.fetch(
+		groq`*[_type == "page" && slug.current == "${currentPageSlug}"]{parentPage->{slug}}`
+	)
+	const parentPageSlug = fetchParentPageSlug[0].parentPage?.slug.current;
+	console.log("parentPageSlug:", parentPageSlug);
+
+	// PARENT PAGE MENU
+	if (parentPageSlug) {
+		let parentPageMenu = await client.fetch(
+			groq`*[_type == "page" && parentPage->slug.current == "${parentPageSlug}"]{title, slug}`
+		);
+		console.log("parentPageMenu:", parentPageMenu);
+		if(parentPageMenu.length > 0) {
+			return parentPageMenu;
+		}
+	}
+
 	return await client.fetch(
-		groq`*[_type == "page" && slug.current == "${slug}" && isParentPage == true]{childpage[]-> {slug, title} }`
+		groq`*[_type == "page" && parentPage->slug.current == "/"]{title, slug}`
 	);
 }
 

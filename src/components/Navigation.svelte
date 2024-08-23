@@ -1,41 +1,14 @@
 <script lang="ts">
-	import { getPageMenu, getPageMenuWIP } from '$lib/utils/sanity';
+	import { getPageMenu } from '$lib/utils/sanity';
 	import { page } from '$app/stores'; 
     import Header from './Header.svelte';
-	import { getPage } from '$lib/utils/sanity';
 
-	let displayMobileMenu = false;
+	const current = $page.data.page[0].slug.current;
 
-	// let dynamicMenu = async () => {
-	async function dynamicMenu() {
-		let pageDataNav = await getPageMenuWIP($page.params.slug);
-		console.log("DynamicMenu: pageDataNav", pageDataNav);
-		
-		// NOTE: When on startpage pageDataNav is returned empty
-		// if(pageDataNav.length == 0) {
-		// 	console.log("return", pageDataNav.childpage);
-		// 	return pageDataNav.childpage;
-		// } 
-		
-		if(pageDataNav[0]) {
-			console.log("DynamicMenu: Slug", pageDataNav[0].slug.current);
-			console.log("DynamicMenu: isParentPage", pageDataNav[0].isParentPage);
-
-			if(pageDataNav[0].isParentPage) {
-				console.log("return", pageDataNav[0].childpage);
-				
-				return pageDataNav[0].childpage;
-			}
-		}
-		
-		if(pageDataNav.length > 1) {
-			console.log("wait what, why is pageDataNav longer than expected?", pageDataNav);
-			
-		}
-	}
-	console.log(dynamicMenu());
+	// console.log("getPageMenu(current)",getPageMenu(current));
 	
-	// console.log("$page",$page.params.slug);
+	
+	let displayMobileMenu = false;
 	
 	// Note to self: 
 	// $page.route.id might be a good way to see if I'm
@@ -54,15 +27,16 @@
 	<h1><a href="/">Fun&#8203;Kit</a></h1>
 	<h3>Meny</h3>
 
-	<!-- {#await dynamicMenu()} -->
-	<!-- {#await getPageMenu(dynamicMenu)} -->
-	{#await getPageMenu("/")}
+	{#await getPageMenu(current)}
+	<!-- {#await getPageMenu("/")} -->
 		<p>loading menu</p>		
 	{:then values} 
-		<ul>
-			<li><a href={`/`} on:click={() => displayMobileMenu = false}>Hem</a></li>
-			{#each values[0].childpage as page}
-				<li><a href={`/${page.slug.current}`} on:click={() => displayMobileMenu = false}>{page.title}</a></li>
+	<!-- {JSON.stringify(values)} -->
+	<ul>
+		<li><a href={`/`} on:click={() => displayMobileMenu = false}>Hem</a></li>
+			{#each values as linkData}
+			<!-- {JSON.stringify(linkData)} -->
+				<li><a href={`/${linkData.slug.current}`} on:click={() => displayMobileMenu = false}>{linkData.title}</a></li>
 			{/each}
 			<li><a href={`/sponsorer`} on:click={() => displayMobileMenu = false}>Sponsorer</a></li>
 

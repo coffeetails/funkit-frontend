@@ -5,7 +5,7 @@
 	import type { PageData } from './$types';
 
 	export let data: PageData;
-	console.log("page data",data.page[0]);
+	// console.log("page data",data.page[0]);
 
 </script>
 
