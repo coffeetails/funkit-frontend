@@ -23,13 +23,19 @@ export async function getPage(slug: string) {
 	
 	return await client.fetch(
 		groq`*[_type == "page" && slug.current == "${slug}"]`
-		// groq`*[_type == "page" && slug.current == "${slug}" && isParentPage == true]`
 	);
 }
 
+
+export async function getBaseHome() {
+	return await client.fetch(
+		groq`*[_type == "page" && slug.current == "/"]{title, slug}`
+	);
+}
+
+
 export async function getPageMenu(currentPageSlug: string) {
 
-	// TODO: Add "home" to the menu array
 	// TODO: Handle non-listed slugs better. Example: /sponsorer always shows the homepage menu.
 
 	console.log("currentPageSlug:", currentPageSlug);
@@ -40,15 +46,6 @@ export async function getPageMenu(currentPageSlug: string) {
 	);
 	console.log("currentPageMenu:", currentPageMenu);
 	if(currentPageMenu.length != 0) {
-		// if(currentPageSlug != "/") {
-		// 	currentPageMenu.push({
-		// 		title: "Tillbaka till Funkit", 
-		// 		slug: {
-		// 			current: "/",
-		// 			_type: "slug",
-		// 		}
-		// 	});
-		// }
 		return currentPageMenu;
 	}
 
@@ -66,15 +63,6 @@ export async function getPageMenu(currentPageSlug: string) {
 		);
 		console.log("parentPageMenu:", parentPageMenu);
 		if(parentPageMenu.length > 0) {
-			// if(currentPageSlug != "/") {
-			// 	parentPageMenu.push({
-			// 		title: "Tillbaka till Funkit", 
-			// 		slug: {
-			// 			current: "/",
-			// 			_type: "slug",
-			// 		}
-			// 	});
-			// }
 			return parentPageMenu;
 		}
 	}
@@ -84,6 +72,7 @@ export async function getPageMenu(currentPageSlug: string) {
 		groq`*[_type == "page" && parentPage->slug.current == "/"]{title, slug}`
 	);
 }
+
 
 export async function getSponsors() {
 	return await client.fetch(
@@ -95,6 +84,9 @@ export async function getSponsors() {
 			link}`
 	);
 }
+
+
+
 
 export async function getPosts() {
 	return await client.fetch(

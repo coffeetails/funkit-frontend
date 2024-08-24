@@ -1,22 +1,16 @@
 <script lang="ts">
-	import { getPageMenu } from '$lib/utils/sanity';
+	import { getBaseHome, getPageMenu } from '$lib/utils/sanity';
 	import { page } from '$app/stores'; 
     import Header from './Header.svelte';
-
-	
 	
 	let currentPath = "";
-	// let currentHome = "";
 	$: currentPath = getPathName($page.url.pathname);
-	// $: currentHome = getHomeName($page.url.pathname);
-	// console.log("currentPath", currentPath);
-	// console.log("currentHome", currentHome);
 	
-	// function getHomeName(path: string) {
-	// 	console.log("$page", $page);
-
-	// 	return path;
-	// }
+	let pageHome; // Display menu home button and page title
+	let baseHome; // When on underpage-menu, display to return to '/
+	// $: baseHome = getBaseHome();
+	// console.log("baseHome", getBaseHome());
+	
 
 	function getPathName(path: string) {
 		if(!path || path == "/") {
@@ -35,7 +29,12 @@
 <Header bind:displayMobileMenu />
 
 <nav class={displayMobileMenu?'open':''}>
+	{#await getBaseHome()}
 	<h1><a href="/">Fun&#8203;Kit</a></h1>
+	{:then value} 
+		<h1><a href={value[0].slug.current}>{value[0].title}</a></h1>
+	{/await}
+
 	<h3>Meny</h3>
 	
 	{#await getPageMenu(currentPath)}
@@ -60,6 +59,10 @@
 
 	/* FIXME: add wordbreak for sites with long name - 1day */
 	/* TODO: add the cool "bubble" to indicate what page you're on - 1week */
+
+	h1 {
+		word-wrap: break-word;
+	}
 
 	nav {
 		margin: 0.25rem;
