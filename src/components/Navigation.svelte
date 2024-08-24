@@ -3,14 +3,34 @@
 	import { page } from '$app/stores'; 
     import Header from './Header.svelte';
 
-	let current = "";
-	$: current = $page.data.page[0].slug.current;
+	
+	
+	let currentPath = "";
+	// let currentHome = "";
+	$: currentPath = getPathName($page.url.pathname);
+	// $: currentHome = getHomeName($page.url.pathname);
+	// console.log("currentPath", currentPath);
+	// console.log("currentHome", currentHome);
+	
+	// function getHomeName(path: string) {
+	// 	console.log("$page", $page);
+
+	// 	return path;
+	// }
+
+	function getPathName(path: string) {
+		if(!path || path == "/") {
+			return "/";
+		} 
+		return path.substring(1);
+	}
 
 	let displayMobileMenu = false;
 </script>
 
 <!-- FIXME: IMPORTANT: Add a "skip to content" link for A11Y - 1day -->
 <!-- TODO: IMPORTANT: Add a "back to funkit" link for sub-menues - 1day -->
+<!-- TOTO: IMORTANT: Add dynamic "home" button -->
 
 <Header bind:displayMobileMenu />
 
@@ -18,18 +38,12 @@
 	<h1><a href="/">Fun&#8203;Kit</a></h1>
 	<h3>Meny</h3>
 	
-	<!-- {#await afterNavigate( {getPageMenu(current)} )} -->
-	<!-- {#await handleNavigation()} -->
-	{#await getPageMenu(current)}
-
-	<!-- {#await getPageMenu("/")} -->
+	{#await getPageMenu(currentPath)}
 		<p>loading menu</p>		
 	{:then values} 
-	<!-- {JSON.stringify(values)} -->
 	<ul>
 		<li><a href={`/`} on:click={() => displayMobileMenu = false}>Hem</a></li>
 			{#each values as linkData}
-			<!-- {JSON.stringify(linkData)} -->
 				<li><a href={`/${linkData.slug.current}`} on:click={() => displayMobileMenu = false}>{linkData.title}</a></li>
 			{/each}
 			<li><a href={`/sponsorer`} on:click={() => displayMobileMenu = false}>Sponsorer</a></li>

@@ -28,10 +28,9 @@ export async function getPage(slug: string) {
 }
 
 export async function getPageMenu(currentPageSlug: string) {
-	// // // // // //\\ \\ \\ \\ \\ \\
-	// TODO: Add "home" to the menu \\
-	// TODO: Add "back to start"	\\
-	// // // // // //\\ \\ \\ \\ \\ \\
+
+	// TODO: Add "home" to the menu array
+	// TODO: Handle non-listed slugs better. Example: /sponsorer always shows the homepage menu.
 
 	console.log("currentPageSlug:", currentPageSlug);
 	
@@ -40,7 +39,16 @@ export async function getPageMenu(currentPageSlug: string) {
 		groq`*[_type == "page" && parentPage->slug.current == "${currentPageSlug}"]{title, slug}`
 	);
 	console.log("currentPageMenu:", currentPageMenu);
-	if(currentPageMenu.length > 0) {
+	if(currentPageMenu.length != 0) {
+		// if(currentPageSlug != "/") {
+		// 	currentPageMenu.push({
+		// 		title: "Tillbaka till Funkit", 
+		// 		slug: {
+		// 			current: "/",
+		// 			_type: "slug",
+		// 		}
+		// 	});
+		// }
 		return currentPageMenu;
 	}
 
@@ -48,20 +56,30 @@ export async function getPageMenu(currentPageSlug: string) {
 	let fetchParentPageSlug = await client.fetch(
 		groq`*[_type == "page" && slug.current == "${currentPageSlug}"]{parentPage->{slug}}`
 	)
-	const parentPageSlug = fetchParentPageSlug[0].parentPage?.slug.current;
-	console.log("parentPageSlug:", parentPageSlug);
 
 	// PARENT PAGE MENU
-	if (parentPageSlug) {
+	if (fetchParentPageSlug[0]) {
+		const parentPageSlug = fetchParentPageSlug[0].parentPage?.slug.current;
+
 		let parentPageMenu = await client.fetch(
 			groq`*[_type == "page" && parentPage->slug.current == "${parentPageSlug}"]{title, slug}`
 		);
 		console.log("parentPageMenu:", parentPageMenu);
 		if(parentPageMenu.length > 0) {
+			// if(currentPageSlug != "/") {
+			// 	parentPageMenu.push({
+			// 		title: "Tillbaka till Funkit", 
+			// 		slug: {
+			// 			current: "/",
+			// 			_type: "slug",
+			// 		}
+			// 	});
+			// }
 			return parentPageMenu;
 		}
 	}
 
+	// FALLBACK TO HOME MENU
 	return await client.fetch(
 		groq`*[_type == "page" && parentPage->slug.current == "/"]{title, slug}`
 	);

@@ -4,7 +4,7 @@ import type { PageLoad } from './$types';
 
 
 export const load = (async ({ params }) => {
-    console.log("params", params);
+    // console.log("params", params);
     
     const page = await getPage(params.slug);
 

@@ -6,7 +6,7 @@ export const load = (async ({ params }) => {
 	const page = await getPage("/");
 
 	if (page) {
-		console.log("page load", page);
+		// console.log("page load", page);
 		return {
 			page
 		};
