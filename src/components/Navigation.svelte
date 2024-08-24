@@ -3,19 +3,10 @@
 	import { page } from '$app/stores'; 
     import Header from './Header.svelte';
 
-	const current = $page.data.page[0].slug.current;
+	let current = "";
+	$: current = $page.data.page[0].slug.current;
 
-	// console.log("getPageMenu(current)",getPageMenu(current));
-	
-	
 	let displayMobileMenu = false;
-	
-	// Note to self: 
-	// $page.route.id might be a good way to see if I'm
-	// currently at a top level page or a sub page, since
-	// there will be multple levels of pages due to 
-	// events having their own menu.
-	
 </script>
 
 <!-- FIXME: IMPORTANT: Add a "skip to content" link for A11Y - 1day -->
@@ -26,8 +17,11 @@
 <nav class={displayMobileMenu?'open':''}>
 	<h1><a href="/">Fun&#8203;Kit</a></h1>
 	<h3>Meny</h3>
-
+	
+	<!-- {#await afterNavigate( {getPageMenu(current)} )} -->
+	<!-- {#await handleNavigation()} -->
 	{#await getPageMenu(current)}
+
 	<!-- {#await getPageMenu("/")} -->
 		<p>loading menu</p>		
 	{:then values} 
