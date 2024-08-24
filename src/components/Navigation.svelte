@@ -1,16 +1,10 @@
 <script lang="ts">
-	import { getBaseHome, getPageMenu } from '$lib/utils/sanity';
+	import { getBaseHome, getPageHome, getPageMenu } from '$lib/utils/sanity';
 	import { page } from '$app/stores'; 
     import Header from './Header.svelte';
 	
 	let currentPath = "";
 	$: currentPath = getPathName($page.url.pathname);
-	
-	let pageHome; // Display menu home button and page title
-	let baseHome; // When on underpage-menu, display to return to '/
-	// $: baseHome = getBaseHome();
-	// console.log("baseHome", getBaseHome());
-	
 
 	function getPathName(path: string) {
 		if(!path || path == "/") {
@@ -20,6 +14,14 @@
 	}
 
 	let displayMobileMenu = false;
+	
+	function neatLinebreak(string:string) {
+		const regExTitle = /(?:\d(?:\d*)|[A-ZÅÄÖØÆ](?:[A-ZÅÄÖØÆ]*))/g;
+		let newString = string.replace(regExTitle, `&#8203;$&`);
+		console.log("newString", newString);
+		return newString
+	}
+
 </script>
 
 <!-- FIXME: IMPORTANT: Add a "skip to content" link for A11Y - 1day -->
@@ -29,10 +31,11 @@
 <Header bind:displayMobileMenu />
 
 <nav class={displayMobileMenu?'open':''}>
-	{#await getBaseHome()}
+	
+	{#await getPageHome(currentPath)}
 	<h1><a href="/">Fun&#8203;Kit</a></h1>
-	{:then value} 
-		<h1><a href={value[0].slug.current}>{value[0].title}</a></h1>
+	{:then value}
+		<h1><a href={"/"+value.slug}>{@html neatLinebreak(value.title)}</a></h1>
 	{/await}
 
 	<h3>Meny</h3>
@@ -41,13 +44,23 @@
 		<p>loading menu</p>		
 	{:then values} 
 	<ul>
-		<li><a href={`/`} on:click={() => displayMobileMenu = false}>Hem</a></li>
+		
+		{#await getPageHome(currentPath)}
+			<li><a href={`/`} on:click={() => displayMobileMenu = false}>Hem</a></li>
+		{:then value} 
+			<!-- {JSON.stringify(value.slug)} -->
+			<!-- <li><a href={"/"+value.slug} on:click={() => displayMobileMenu = false}>Hem</a></li> -->
+			<li><a href={value.slug == "/" ? "/" : "/"+value.slug} on:click={() => displayMobileMenu = false}>Hem</a></li>
+		{/await}
+
 			{#each values as linkData}
-				<li><a href={`/${linkData.slug.current}`} on:click={() => displayMobileMenu = false}>{linkData.title}</a></li>
+				<li><a href={`/${linkData.slug}`} on:click={() => displayMobileMenu = false}>{linkData.title}</a></li>
 			{/each}
 			<li><a href={`/sponsorer`} on:click={() => displayMobileMenu = false}>Sponsorer</a></li>
 
-			<li><a href={`/`} on:click={() => displayMobileMenu = false}>Tillbaka</a></li>
+			{#if currentPath != "/"}
+				<li><a href={`/`} on:click={() => displayMobileMenu = false}>Till startsidan</a></li>
+			{/if}
 		</ul>
 	{:catch error}
 		<p>Something went wrong: {error.message}</p>
@@ -59,10 +72,6 @@
 
 	/* FIXME: add wordbreak for sites with long name - 1day */
 	/* TODO: add the cool "bubble" to indicate what page you're on - 1week */
-
-	h1 {
-		word-wrap: break-word;
-	}
 
 	nav {
 		margin: 0.25rem;
@@ -78,9 +87,10 @@
 	}
     
     nav >:nth-child(1) {
-        padding: 1rem 0rem;
-        font-size: 3rem;
-        text-align: center;
+        padding: 1rem 0.5rem;
+        font-size: 2.5rem;
+        text-align: left;
+		line-height: 2.75rem;
     }
 	nav >:nth-child(1) a {
 		font-family: "Lemon", serif;
@@ -108,6 +118,7 @@
 		width: 100%;
 		font-family: "Lemon", serif;
 		border-bottom-color: transparent;
+		/* word-wrap: break-word; */
 	}
 	li a:hover {
 		border: 2px solid var(--black);

@@ -34,15 +34,56 @@ export async function getBaseHome() {
 }
 
 
+export async function getPageHome(currentPageSlug: string) {
+
+	// IF current page IS parentPage
+	// DO show current as pageHome
+	// IF current page HAS parentPage
+	// DO show parentPage as pageHome
+	// IF NEITHER show previous pageHome
+	// FALLBACK to "/";
+
+	console.log("currentPageSlug:", currentPageSlug);
+	
+	// CURRENT PAGE HOME
+	let currentPageHome = await client.fetch(
+		groq`*[_type == "page" && parentPage->slug.current == "${currentPageSlug}"]{parentPage->{"title":title, "slug":slug.current}}`
+	);
+	console.log("currentPageHome:", currentPageHome);
+	if(currentPageHome.length > 0) {
+		return currentPageHome[0].parentPage;
+	}
+
+	// PARENT PAGE HOME
+	let parentPageHome = await client.fetch(
+		groq`*[_type == "page" && slug.current == "${currentPageSlug}"]
+			{"title":title,
+			"slug":slug.current,
+			parentPage->{
+				"title":title,
+				"slug":slug.current}}`
+	)
+	console.log("parentPageHome:", parentPageHome[0]);
+	if(parentPageHome[0]) {
+		return parentPageHome[0].parentPage;
+	}
+
+	// FALLBACK TO HOME MENU
+	return await client.fetch(
+		groq`*[_type == "page" && slug.current == "/"]{"title":title, "slug":slug.current}`
+	);
+}
+
+
 export async function getPageMenu(currentPageSlug: string) {
 
-	// TODO: Handle non-listed slugs better. Example: /sponsorer always shows the homepage menu.
+	// TODO: Handle non-listed slugs better. Example: /sponsorer always shows the homepage menu rn to not break the page.
 
 	console.log("currentPageSlug:", currentPageSlug);
 	
 	// CURRENT PAGE MENU
 	let currentPageMenu = await client.fetch(
-		groq`*[_type == "page" && parentPage->slug.current == "${currentPageSlug}"]{title, slug}`
+		groq`*[_type == "page" && parentPage->slug.current == "${currentPageSlug}"]{"title": title, "slug": slug.current}`
 	);
 	console.log("currentPageMenu:", currentPageMenu);
 	if(currentPageMenu.length != 0) {
@@ -59,7 +100,7 @@ export async function getPageMenu(currentPageSlug: string) {
 		const parentPageSlug = fetchParentPageSlug[0].parentPage?.slug.current;
 
 		let parentPageMenu = await client.fetch(
-			groq`*[_type == "page" && parentPage->slug.current == "${parentPageSlug}"]{title, slug}`
+			groq`*[_type == "page" && parentPage->slug.current == "${parentPageSlug}"]{"title": title, "slug": slug.current}`
 		);
 		console.log("parentPageMenu:", parentPageMenu);
 		if(parentPageMenu.length > 0) {
@@ -69,7 +110,7 @@ export async function getPageMenu(currentPageSlug: string) {
 
 	// FALLBACK TO HOME MENU
 	return await client.fetch(
-		groq`*[_type == "page" && parentPage->slug.current == "/"]{title, slug}`
+		groq`*[_type == "page" && parentPage->slug.current == "/"]{"title": title, "slug": slug.current}`
 	);
 }
 
