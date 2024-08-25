@@ -20,13 +20,16 @@
 		// console.log("newString", newString);
 		return newString;
 	}
-
+	
 </script>
 
 
 <Header bind:displayMobileMenu />
+  
 
-<nav class={displayMobileMenu?'open':''}>
+<div class={displayMobileMenu?'openBackdrop':''}>
+<!-- <div> -->
+<nav class={displayMobileMenu?'openNav':''}>
 	
 	{#await getPageHome(currentPath)}
 	<h1><a href="/">Fun&#8203;Kit</a></h1>
@@ -63,6 +66,7 @@
 	{/await}
 
 </nav>
+</div>
 
 <style>
 
@@ -127,14 +131,16 @@
     nav {
         display: none;
 		/* opacity: 0; */
-        position: absolute;
-        top: 5rem;
+        /* position: absolute; */
+        position: sticky;
+        top: 5.5rem;
         bottom: 0.5rem;
         left: 0.5rem;
         right: 0.5rem;
         width: auto;
+		min-height: 80dvh;
 		max-width: 100vw;
-        z-index: 5;
+        z-index: 15;
         background-color: #fafafa;
         border-radius: var(--border-radius);
 	}
@@ -152,8 +158,25 @@
 		margin: 0.5rem 1rem;
 	}
 
-	.open {
+	.openNav {
 		display: block;
+	}
+	:global(body):has(.openNav) {
+		overflow: hidden;
+	}
+	.openBackdrop { 
+		z-index: 10;
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+    	/* height: 200%; */
+    	/* height: inherit; */
+		height: 200%;
+		max-height: 500dvh;
+		background-color: #131a24d6;
+		/* overflow: hidden; */
 	}
 }
 </style>

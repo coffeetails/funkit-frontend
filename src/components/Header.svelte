@@ -29,6 +29,7 @@
 
 <style>
     header {
+        z-index: 15;
         position: absolute;
         top: 0;
         right: 0;
@@ -43,10 +44,10 @@
     #placeholder {
         width: 60px;
     }
-
+    
     #menuButton {
+        position: sticky;
         all: unset;
-        z-index: 10;
         width: 60px;
         height: 45px;
         border: 4px solid transparent;
@@ -62,6 +63,9 @@
         -o-transition: .5s ease-in-out;
         transition: .5s ease-in-out;
         cursor: pointer;
+    }
+    #menuButton, #menuButton * {
+        z-index: 20;
     }
     #menuButton:focus-visible {
         border: 4px solid #217776;
