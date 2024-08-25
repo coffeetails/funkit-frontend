@@ -25,7 +25,7 @@
 		margin: auto;
 		/* margin-top: 5rem; */
 		max-width: 70rem;
-		max-height: 70dvh;
+		/* max-height: 70dvh; */
 		width: fit-content;
 
 		display: grid;

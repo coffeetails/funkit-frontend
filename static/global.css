@@ -52,3 +52,10 @@ article {
     overflow: scroll;
     padding: 0.5rem 2rem 1rem;
 }
+
+@media (max-width: 670px) {
+    main {
+        height: 70dvh;
+        max-height: initial;
+    }
+}
