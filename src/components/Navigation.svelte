@@ -5,6 +5,7 @@
 	
 	let currentPath = "";
 	$: currentPath = getPathName($page.url.pathname);
+	let displayMobileMenu = false;
 
 	function getPathName(path: string) {
 		if(!path || path == "/") {
@@ -12,14 +13,12 @@
 		} 
 		return path.substring(1);
 	}
-
-	let displayMobileMenu = false;
 	
 	function neatLinebreak(string:string) {
 		const regExTitle = /(?:\d(?:\d*)|[A-ZÅÄÖØÆ](?:[A-ZÅÄÖØÆ]*))/g;
 		let newString = string.replace(regExTitle, `&#8203;$&`);
-		console.log("newString", newString);
-		return newString
+		// console.log("newString", newString);
+		return newString;
 	}
 
 </script>
@@ -35,7 +34,7 @@
 	{#await getPageHome(currentPath)}
 	<h1><a href="/">Fun&#8203;Kit</a></h1>
 	{:then value}
-		<h1><a href={"/"+value.slug}>{@html neatLinebreak(value.title)}</a></h1>
+		<h1><a href={value.slug != "/" ? "/"+value.slug : "/"}>{@html neatLinebreak(value.title)}</a></h1>
 	{/await}
 
 	<h3>Meny</h3>
@@ -48,9 +47,9 @@
 		{#await getPageHome(currentPath)}
 			<li><a href={`/`} on:click={() => displayMobileMenu = false}>Hem</a></li>
 		{:then value} 
-			<!-- {JSON.stringify(value.slug)} -->
-			<!-- <li><a href={"/"+value.slug} on:click={() => displayMobileMenu = false}>Hem</a></li> -->
-			<li><a href={value.slug == "/" ? "/" : "/"+value.slug} on:click={() => displayMobileMenu = false}>Hem</a></li>
+			<!-- {JSON.stringify(value)} -->
+			<!-- {value.slug != "/" ? "/"+value.slug : "/"} -->
+			<li><a href={value.slug != "/" ? "/"+value.slug : "/"} on:click={() => displayMobileMenu = false}>Hem</a></li>
 		{/await}
 
 			{#each values as linkData}
