@@ -13,9 +13,6 @@
 </script>
 
 <header>
-    <!-- svelte-ignore a11y-click-events-have-key-events -->
-    <!-- svelte-ignore a11y-no-static-element-interactions -->
-    <!-- <div id="menuButton" on:click={changeState} class={displayMobileMenu?'open':''}> -->
     <button id="menuButton" on:click={changeState} class={displayMobileMenu?'open':''}>
         <span></span>
         <span></span>
@@ -31,6 +28,7 @@
     header {
         z-index: 15;
         position: absolute;
+        /* position: sticky; */
         top: 0;
         right: 0;
         left: 0;

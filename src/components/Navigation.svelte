@@ -28,7 +28,7 @@
   
 
 <div class={displayMobileMenu?'openBackdrop':''}>
-<!-- <div> -->
+</div>
 <nav class={displayMobileMenu?'openNav':''}>
 	
 	{#await getPageHome(currentPath)}
@@ -66,16 +66,21 @@
 	{/await}
 
 </nav>
-</div>
+<!-- </div> -->
 
 <style>
 
-	/* FIXME: add wordbreak for sites with long name - 1day */
 	/* TODO: add the cool "bubble" to indicate what page you're on - 1week */
+
+	div {
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
 
 	nav {
 		/* grid-row: -1/span -2; */
-
+		/* height: 100%; */
 		margin: 0.25rem;
 		border: var(--border-style);
 		border-radius: var(--small-border-radius);
@@ -131,8 +136,8 @@
     nav {
         display: none;
 		/* opacity: 0; */
-        /* position: absolute; */
-        position: sticky;
+        position: absolute;
+        /* position: sticky; */
         top: 5.5rem;
         bottom: 0.5rem;
         left: 0.5rem;
@@ -173,9 +178,10 @@
 		right: 0;
     	/* height: 200%; */
     	/* height: inherit; */
-		height: 200%;
-		max-height: 500dvh;
+		/* height: 200%;
+		max-height: 500dvh; */
 		background-color: #131a24d6;
+		background: url(background.svg);
 		/* overflow: hidden; */
 	}
 }

@@ -14,6 +14,7 @@
 
 <style>
 
+
 	.pageWrapper {
 		width: 100dvw;
 		height: 100dvh;
@@ -21,6 +22,8 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
+
+		/* align-content: flex-start; */
 	}
 	.contentWrapper {
 		margin: auto;
