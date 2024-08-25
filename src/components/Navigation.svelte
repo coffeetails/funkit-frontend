@@ -23,9 +23,6 @@
 
 </script>
 
-<!-- FIXME: IMPORTANT: Add a "skip to content" link for A11Y - 1day -->
-<!-- TODO: IMPORTANT: Add a "back to funkit" link for sub-menues - 1day -->
-<!-- TOTO: IMORTANT: Add dynamic "home" button -->
 
 <Header bind:displayMobileMenu />
 
@@ -53,7 +50,7 @@
 		{/await}
 
 			{#each values as linkData}
-				<li><a href={`/${linkData.slug}`} on:click={() => displayMobileMenu = false}>{linkData.title}</a></li>
+				<li><a href={`/${linkData.slug}`} on:click={() => displayMobileMenu = false}>{@html neatLinebreak(linkData.title)}</a></li>
 			{/each}
 			<li><a href={`/sponsorer`} on:click={() => displayMobileMenu = false}>Sponsorer</a></li>
 
@@ -73,6 +70,8 @@
 	/* TODO: add the cool "bubble" to indicate what page you're on - 1week */
 
 	nav {
+		/* grid-row: -1/span -2; */
+
 		margin: 0.25rem;
 		border: var(--border-style);
 		border-radius: var(--small-border-radius);

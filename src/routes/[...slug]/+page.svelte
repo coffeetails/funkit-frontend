@@ -15,10 +15,12 @@
 </script>
 
 <main id="main">
-    <h1 class="pageTitle">{data.page[0].title}</h1>
-	<!-- FIXME: PortableText property missing -->
-    <PortableText value={data.page[0].content} />
-    <TextAreaShadow />
+	<article>
+		<h1 class="pageTitle">{data.page[0].title}</h1>
+		<!-- FIXME: PortableText property missing -->
+		<PortableText value={data.page[0].content} />
+	</article>
+	<TextAreaShadow />
 </main>
 
 <style>

@@ -31,12 +31,24 @@ body {
 }
 
 main {
+    /* grid-column: -1/span auto; */
+
     position: relative;
     width: fit-content;
     max-height: 40rem;
+    height: 100%;
     margin: 0.25rem;
     border: var(--border-style);
-    padding: 0.5rem 2rem 3rem;
+    /* padding: 0.5rem 2rem 1rem; */
     background-color: #fafafa;
+    overflow: hidden;
+}
+article {
+    position: inherit;
+    width: inherit;
+    max-height: inherit;
+    height: inherit;
+    
     overflow: scroll;
+    padding: 0.5rem 2rem 1rem;
 }

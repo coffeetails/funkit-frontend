@@ -4,24 +4,26 @@
 </script>
 
 <main id="main">
-	<h1>Våra sponsorer</h1>
-	{#await getSponsors()}
-		loading
-	{:then sponsors} 
-		{#each sponsors as sponsor}
-			<section>
-				{#if sponsor.link}
-					<h4><a href={sponsor.link}>{sponsor.name}</a></h4>
-					<a href={sponsor.link} class="imageLink"><img src={sponsor.imageSrc} alt={sponsor.imageAlt} /></a>
-				{:else}
-					<h4>{sponsor.name}</h4>
-					<img src={sponsor.imageSrc} alt={sponsor.imageAlt} />
-				{/if}
-				<p>{sponsor.details?sponsor.details:" "}</p>
-			</section>
-		{/each}		
-	{/await}
-    <TextAreaShadow />
+	<article>
+		<h1>Våra sponsorer</h1>
+		{#await getSponsors()}
+			loading
+		{:then sponsors} 
+			{#each sponsors as sponsor}
+				<section>
+					{#if sponsor.link}
+						<h4><a href={sponsor.link}>{sponsor.name}</a></h4>
+						<a href={sponsor.link} class="imageLink"><img src={sponsor.imageSrc} alt={sponsor.imageAlt} /></a>
+					{:else}
+						<h4>{sponsor.name}</h4>
+						<img src={sponsor.imageSrc} alt={sponsor.imageAlt} />
+					{/if}
+					<p>{sponsor.details?sponsor.details:" "}</p>
+				</section>
+			{/each}		
+		{/await}
+	</article>
+	<TextAreaShadow />
 </main>
 
 <style>
@@ -59,7 +61,9 @@
 		border-radius: var(--small-border-radius);
 		border-bottom-right-radius: var(--border-radius);
 		border-top-right-radius: var(--border-radius);
+	}
 
+	article {
 		display: flex;
 		flex-direction: row;
 		flex-wrap: wrap;

@@ -9,14 +9,14 @@
 
 </script>
 
+<News />
 <main id="main">
-	<News />
 	<article>
 		<!-- FIXME: PortableText property missing -->
 		<PortableText value={data.page[0].content} />
 		
-		<TextAreaShadow />
 	</article>
+	<TextAreaShadow />
 </main>
 
 <style>
