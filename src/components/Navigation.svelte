@@ -4,8 +4,11 @@
     import Header from './Header.svelte';
 	
 	let currentPath = "";
+	
 	$: currentPath = getPathName($page.url.pathname);
 	let displayMobileMenu = false;
+	console.log("currentPath: ", currentPath);
+	
 
 	function getPathName(path: string) {
 		if(!path || path == "/") {
@@ -20,7 +23,6 @@
 		// console.log("newString", newString);
 		return newString;
 	}
-	
 </script>
 
 
@@ -39,27 +41,38 @@
 
 	<h3>Meny</h3>
 	<a href="#main" class="a11yLink">Skippa menyn</a>
+
 	{#await getPageMenu(currentPath)}
 		<p>loading menu</p>		
 	{:then values} 
 	<ul>
 		
 		{#await getPageHome(currentPath)}
-			<li><a href={`/`} on:click={() => displayMobileMenu = false}>Hem</a></li>
+		<li><a href={`/`} on:click={() => displayMobileMenu = false}>Hem</a></li>
 		{:then value} 
-			<!-- {JSON.stringify(value)} -->
-			<!-- {value.slug != "/" ? "/"+value.slug : "/"} -->
-			<li><a href={value.slug != "/" ? "/"+value.slug : "/"} on:click={() => displayMobileMenu = false}>Hem</a></li>
+			<li class:active={currentPath == value.slug}>
+				<a href={value.slug != "/" ? "/"+value.slug : "/"} on:click={() => displayMobileMenu = false}>Hem</a>
+			</li>
 		{/await}
 
 			{#each values as linkData}
-				<li><a href={`/${linkData.slug}`} on:click={() => displayMobileMenu = false}>{@html neatLinebreak(linkData.title)}</a></li>
+				<li class:active={currentPath == linkData.slug}>
+					<a href={`/${linkData.slug}`} on:click={() => displayMobileMenu = false} >{@html neatLinebreak(linkData.title)}</a>
+				</li>
 			{/each}
-			<li><a href={`/sponsorer`} on:click={() => displayMobileMenu = false}>Sponsorer</a></li>
 
-			{#if currentPath != "/"}
-				<li><a href={`/`} on:click={() => displayMobileMenu = false}>Till startsidan</a></li>
-			{/if}
+			<li class:active={currentPath == "sponsorer"}>
+				<a href={`/sponsorer`} on:click={() => displayMobileMenu = false} >Sponsorer</a>
+			</li>
+
+			{#await getPageHome(currentPath)}
+				<span></span>
+			{:then value} 
+				{#if value.slug != "/"}
+					<li><a href={`/`} on:click={() => displayMobileMenu = false}>Till startsidan</a></li>
+				{/if}
+			{/await}
+
 		</ul>
 	{:catch error}
 		<p>Something went wrong: {error.message}</p>
@@ -115,6 +128,7 @@
     }
     
     ul, li {
+		position: relative;
         list-style-type: none;
 		padding: 0.25rem 0;
 		margin: 0;
@@ -129,6 +143,18 @@
 	}
 	li a:hover {
 		border: 2px solid var(--black);
+	}
+
+	.active:before {
+		content: "🌸";
+		position: absolute;
+		left: -2rem;
+		height: 1.5rem;
+		width: 1.5rem;
+		text-align: center;
+		background-color: #fafafa;
+		border-radius: 2rem;
+		border: var(--border-style)
 	}
 
 @media (max-width: 670px) {
