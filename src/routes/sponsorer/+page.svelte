@@ -3,7 +3,7 @@
     import { getSponsors } from '$lib/utils/sanity';
 </script>
 
-<article>
+<main id="main">
 	<h1>Våra sponsorer</h1>
 	{#await getSponsors()}
 		loading
@@ -22,7 +22,7 @@
 		{/each}		
 	{/await}
     <TextAreaShadow />
-</article>
+</main>
 
 <style>
 	h1 {
@@ -55,7 +55,7 @@
 		padding: 0.25rem 0;
 	}
 
-	article {
+	main {
 		border-radius: var(--small-border-radius);
 		border-bottom-right-radius: var(--border-radius);
 		border-top-right-radius: var(--border-radius);
@@ -71,7 +71,7 @@
 	}
 
 	@media (max-width: 670px) {
-		article {
+		main {
 			border-radius: var(--border-radius);
 		}
 	}

@@ -38,7 +38,7 @@
 	{/await}
 
 	<h3>Meny</h3>
-	
+	<a href="#main" class="a11yLink">Skippa menyn</a>
 	{#await getPageMenu(currentPath)}
 		<p>loading menu</p>		
 	{:then values} 

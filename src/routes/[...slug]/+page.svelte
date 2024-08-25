@@ -14,22 +14,22 @@
 	//		can I continue to use this? 
 </script>
 
-<article>
+<main id="main">
     <h1 class="pageTitle">{data.page[0].title}</h1>
 	<!-- FIXME: PortableText property missing -->
     <PortableText value={data.page[0].content} />
     <TextAreaShadow />
-</article>
+</main>
 
 <style>
-	article {
+	main {
 		border-radius: var(--small-border-radius);
 		border-bottom-right-radius: var(--border-radius);
 		border-top-right-radius: var(--border-radius);
 	}
 
 	@media (max-width: 670px) {
-		article {
+		main {
 			border-radius: var(--border-radius);
 		}
 	}

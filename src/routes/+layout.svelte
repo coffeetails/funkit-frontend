@@ -3,15 +3,15 @@
 
 </script>
 
-<div class="contentWrapper">
-	<main>
+<div class="pageWrapper">
+	<div class="contentWrapper">
 		<Navigation />
 		<slot />
-	</main>
+	</div>
 </div>
 
 <style>
-	div {
+	.pageWrapper {
 		width: 100dvw;
 		height: 100dvh;
 		/* padding: 1rem; */
@@ -19,7 +19,7 @@
 		align-items: center;
 		justify-content: center;
 	}
-	main {
+	.contentWrapper {
 		margin: auto;
 		/* margin-top: 5rem; */
 		max-width: 70rem;

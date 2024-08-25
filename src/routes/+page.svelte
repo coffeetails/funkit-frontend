@@ -9,7 +9,7 @@
 
 </script>
 
-<section>
+<main id="main">
 	<News />
 	<article>
 		<!-- FIXME: PortableText property missing -->
@@ -17,16 +17,16 @@
 		
 		<TextAreaShadow />
 	</article>
-</section>
+</main>
 
 <style>
-	article {
+	main {
 		border-radius: var(--small-border-radius);
 		border-bottom-right-radius: var(--border-radius);
 	}
 	
 	@media (max-width: 670px) {
-		article {
+		main {
 			border-bottom-left-radius: var(--border-radius);
 		}
 	}
