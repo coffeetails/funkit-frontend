@@ -3,35 +3,21 @@
 
 </script>
 
-<div class="pageWrapper">
-	<div class="contentWrapper">
-		<Navigation />
-		<div class="yetAnotherWrapper">
-			<slot />
-		</div>
+<div class="contentWrapper">
+	<Navigation />
+	<div class="yetAnotherWrapper">
+		<slot />
 	</div>
 </div>
 
 <style>
-
-
-	.pageWrapper {
-		width: 100dvw;
-		height: 100dvh;
-		/* padding: 1rem; */
-		display: flex;
-		align-items: center;
-		justify-content: center;
-
-		/* align-content: flex-start; */
-	}
 	.contentWrapper {
-		margin: auto;
-		/* margin-top: 5rem; */
+		margin: 1rem;
+		padding: 1rem 0;
 		width: 70rem;
+		height: 70dvh;
 		/* width: fit-content; */
 		/* max-height: 70dvh; */
-		margin: 0 1rem;
 
 		display: grid;
 		justify-items: stretch;
@@ -41,6 +27,9 @@
 		/* grid-template-rows: repeat(2, auto); */
 	}
 	.yetAnotherWrapper {
+		align-items: stretch;
+		justify-self: stretch;
+
 		display: flex;
 		flex-direction: column;
 		align-items: stretch;
@@ -50,21 +39,10 @@
 		div {
 			height: auto;
 		}
-		.pageWrapper {
-			/* background: url(background.svg);
-			background-attachment: fixed;
-			background-size: cover;
-			background-position: center center; */
-			/* height: 100dvh; */
-			/* width: 90%; */
-			width: 90dvw;
-			margin: 0 auto;
-			padding: 0.5rem;
-			margin-top: 5rem;
-		}
 		.contentWrapper {
 			width: inherit;
 			margin: 0;
+			/* margin: 0 auto; */
 		}
 		.yetAnotherWrapper {
 			/* width: 90%; */
