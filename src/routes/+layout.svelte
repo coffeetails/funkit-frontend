@@ -43,15 +43,18 @@
 	
 	@media (max-width: 670px) {
 		.pageWrapper {
-			background: url(background.svg);
+			/* background: url(background.svg);
 			background-attachment: fixed;
 			background-size: cover;
-			background-position: center center;
-			height: 100dvh;
+			background-position: center center; */
+			/* height: 100dvh; */
 			width: 100dvw;
 			margin: 0;
 			padding: 0.5rem;
 			padding-top: 5rem;
+		}
+		div {
+			height: auto;
 		}
 	}
 </style>
