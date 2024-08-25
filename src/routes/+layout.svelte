@@ -28,9 +28,9 @@
 	.contentWrapper {
 		margin: auto;
 		/* margin-top: 5rem; */
-		max-width: 70rem;
+		width: 70rem;
+		/* width: fit-content; */
 		/* max-height: 70dvh; */
-		width: fit-content;
 		margin: 0 1rem;
 
 		display: grid;
@@ -47,19 +47,28 @@
 	}
 	
 	@media (max-width: 670px) {
+		div {
+			height: auto;
+		}
 		.pageWrapper {
 			/* background: url(background.svg);
 			background-attachment: fixed;
 			background-size: cover;
 			background-position: center center; */
 			/* height: 100dvh; */
-			width: 100dvw;
-			margin: 0;
+			/* width: 90%; */
+			width: 90dvw;
+			margin: 0 auto;
 			padding: 0.5rem;
-			padding-top: 5rem;
+			margin-top: 5rem;
 		}
-		div {
-			height: auto;
+		.contentWrapper {
+			width: inherit;
+			margin: 0;
+		}
+		.yetAnotherWrapper {
+			/* width: 90%; */
+			width: inherit;
 		}
 	}
 </style>

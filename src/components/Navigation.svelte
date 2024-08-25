@@ -61,7 +61,7 @@
 				</li>
 			{/each}
 
-			<li class:active={currentPath == "sponsorer"}>
+			<li class:active={currentPath == "sponsorer"} style="margin-top: 75%;">
 				<a href={`/sponsorer`} on:click={() => displayMobileMenu = false} >Sponsorer</a>
 			</li>
 
@@ -126,7 +126,10 @@
         padding: 1rem 1rem;
         text-align: center;
     }
-    
+	
+	li {
+		flex-grow: 1;
+	}
     ul, li {
 		position: relative;
         list-style-type: none;
@@ -207,7 +210,7 @@
 		/* height: 200%;
 		max-height: 500dvh; */
 		background-color: #131a24d6;
-		background: url(background.svg);
+		background-image: url(background.svg);
 		/* overflow: hidden; */
 	}
 }
