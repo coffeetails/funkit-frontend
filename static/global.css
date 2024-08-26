@@ -60,7 +60,8 @@ main {
 }
 article {
     position: inherit;
-    width: inherit;
+    /* width: inherit; */
+    width: 100%;
     max-height: inherit;
     height: inherit;
     
@@ -78,6 +79,7 @@ article {
         margin: 0 auto;
         padding: 0.5rem;
         margin-top: 5rem;
+        height: 90dvh;
     }
     main {
         height: auto;

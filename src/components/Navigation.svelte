@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { getBaseHome, getPageHome, getPageMenu } from '$lib/utils/sanity';
+	import { getPageHome, getPageMenu } from '$lib/utils/sanity';
 	import { page } from '$app/stores'; 
     import Header from './Header.svelte';
 	
@@ -20,7 +20,7 @@
 	function neatLinebreak(string:string) {
 		const regExTitle = /(?:\d(?:\d*)|[A-ZÅÄÖØÆ](?:[A-ZÅÄÖØÆ]*))/g;
 		let newString = string.replace(regExTitle, `&#8203;$&`);
-		// console.log("newString", newString);
+		console.log("neatLinebreak", newString);
 		return newString;
 	}
 </script>
@@ -61,7 +61,7 @@
 				</li>
 			{/each}
 
-			<li class:active={currentPath == "sponsorer"} style="margin-top: 75%;">
+			<li class:active={currentPath == "sponsorer"} class="linkMenuJump">
 				<a href={`/sponsorer`} on:click={() => displayMobileMenu = false} >Sponsorer</a>
 			</li>
 
@@ -101,9 +101,11 @@
 		border-bottom-left-radius: var(--border-radius);
 		padding: 0.5rem 1rem;
 		background-color: #fafafa75;
-		/* min-width: 10rem; */
 		width: fit-content;
 		max-width: 15rem;
+		
+		display: flex;
+		flex-direction: column;
 	}
     
     nav >:nth-child(1) {
@@ -127,14 +129,19 @@
         text-align: center;
     }
 	
-	li {
-		flex-grow: 1;
+	ul {
+		display:flex;
+		flex-direction: column;
+		height: 100%;
 	}
     ul, li {
 		position: relative;
         list-style-type: none;
 		padding: 0.25rem 0;
 		margin: 0;
+	}
+	.linkMenuJump {
+		margin-top: auto;
 	}
 
 	li a {
@@ -188,12 +195,15 @@
 		font-size: 2rem;
 	}
 
+	ul {
+		height: 100%;
+	}
 	li {
 		margin: 0.5rem 1rem;
 	}
 
 	.openNav {
-		display: block;
+		display: flex;
 	}
 	:global(body):has(.openNav) {
 		overflow: hidden;

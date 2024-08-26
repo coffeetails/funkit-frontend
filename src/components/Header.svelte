@@ -4,16 +4,14 @@
     export let currentPath: string;
     
     function changeState() {
-        console.log("1");
         if(displayMobileMenu) {
-            console.log("2");
             displayMobileMenu = false;
         } else if(!displayMobileMenu) {
-            console.log("3");
             displayMobileMenu = true;
         }
     }
 </script>
+
 
 <header>
     <button id="menuButton" on:click={changeState} class={displayMobileMenu?'open':''}>
@@ -34,11 +32,12 @@
     <div id="placeholder"></div>
 </header>
 
+
 <style>
     header {
         z-index: 15;
-        position: absolute;
-        /* position: sticky; */
+        /* position: absolute; */
+        position: fixed;
         top: 0;
         right: 0;
         left: 0;
@@ -47,10 +46,14 @@
 
         display: flex;
         justify-content: space-between;
+        gap: 0.25rem;
+        box-shadow: 0 0 0.5rem 0.5rem #16161689;
     }
 
     #placeholder {
-        width: 60px;
+        width: 10dvw;
+        max-width: 60px;
+        /* border: 1px solid gray; */
     }
     
     #menuButton {
