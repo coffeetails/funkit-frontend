@@ -172,8 +172,8 @@
     nav {
         display: none;
 		/* opacity: 0; */
-        position: absolute;
-        /* position: sticky; */
+        /* position: absolute; */
+        position: fixed;
         top: 5.5rem;
         bottom: 0.5rem;
         left: 0.5rem;
@@ -210,7 +210,7 @@
 	}
 	.openBackdrop { 
 		z-index: 10;
-		position: absolute;
+		position: fixed;
 		top: 0;
 		bottom: 0;
 		left: 0;

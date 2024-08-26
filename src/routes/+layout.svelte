@@ -44,7 +44,7 @@
 			height: auto;
 		}
 		.contentWrapper {
-			width: inherit;
+			width: 90dvw;
 			margin: 0;
 			/* margin: 0 auto; */
 		}
