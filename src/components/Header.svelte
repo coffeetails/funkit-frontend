@@ -1,5 +1,8 @@
 <script lang="ts">
+    import { getPageHome } from '$lib/utils/sanity';
     export let displayMobileMenu: boolean;
+    export let currentPath: string;
+    
     function changeState() {
         console.log("1");
         if(displayMobileMenu) {
@@ -20,7 +23,14 @@
         <span></span>
     </button>
     <!-- </div> -->
-    <h3>Funkit</h3>
+    
+    {#await getPageHome(currentPath)}
+        <h3>Funkit</h3>
+	{:then value}
+        <h3>{value.title}</h3>
+		<!-- <h1><a href={value.slug != "/" ? "/"+value.slug : "/"}>{@html neatLinebreak(value.title)}</a></h1> -->
+	{/await}
+
     <div id="placeholder"></div>
 </header>
 

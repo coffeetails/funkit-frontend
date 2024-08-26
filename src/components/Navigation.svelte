@@ -26,7 +26,7 @@
 </script>
 
 
-<Header bind:displayMobileMenu />
+<Header bind:displayMobileMenu bind:currentPath />
   
 
 <div class={displayMobileMenu?'openBackdrop':''}>
