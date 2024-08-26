@@ -17,7 +17,7 @@
 		width: 70rem;
 		height: 70dvh;
 		/* width: fit-content; */
-		max-height: 50rem;
+		max-height: 40rem;
 
 		display: grid;
 		/* justify-items: stretch;
