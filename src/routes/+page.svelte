@@ -12,7 +12,6 @@
 <News />
 <main id="main">
 	<article>
-		<!-- FIXME: PortableText property missing -->
 		<PortableText value={data.page[0].content} />
 		
 	</article>

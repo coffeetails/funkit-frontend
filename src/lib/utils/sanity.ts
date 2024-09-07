@@ -18,6 +18,25 @@ export const client = createClient({
 });
 
 
+export async function getLatestNews() {
+	return await client.fetch(
+		groq`*[_type == "news"] | order(_createdAt desc) [0] {title, content, "created": _createdAt, "updated": _updatedAt, "slug": slug.current}`
+	);
+}
+
+export async function getCurrentNews(slug: string) {
+	return await client.fetch(
+		groq`*[_type == "news" && slug.current == "${slug}"] {title, content, "created": _createdAt, "updated": _updatedAt, "slug": slug.current}`
+	);
+}
+
+export async function getNews() {
+	return await client.fetch(
+		groq`*[_type == "news"] | order(_createdAt desc) {title, content, "created": _createdAt, "updated": _updatedAt, "slug": slug.current}`
+	);
+}
+
+
 export async function getPage(slug: string) {
 	// console.log("getPage", slug);
 	

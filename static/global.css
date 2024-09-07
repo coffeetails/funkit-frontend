@@ -58,7 +58,7 @@ main {
     background-color: #fafafa;
     overflow: hidden;
 }
-article {
+article, .mainContentWrapper {
     position: inherit;
     /* width: inherit; */
     width: 100%;

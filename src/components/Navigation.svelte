@@ -61,6 +61,9 @@
 				</li>
 			{/each}
 
+			<li class:active={currentPath == "nyheter"} class="linkMenuJump">
+				<a href={`/nyheter`} on:click={() => displayMobileMenu = false} >Nyheter</a>
+			</li>
 			<li class:active={currentPath == "sponsorer"} class="linkMenuJump">
 				<a href={`/sponsorer`} on:click={() => displayMobileMenu = false} >Sponsorer</a>
 			</li>
