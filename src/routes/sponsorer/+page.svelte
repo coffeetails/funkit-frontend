@@ -3,6 +3,10 @@
     import { getSponsors } from '$lib/utils/sanity';
 </script>
 
+<svelte:head>
+	<title>Sponsorer</title>
+</svelte:head>
+
 <main id="main">
 	<article>
 		<h1>Våra sponsorer</h1>

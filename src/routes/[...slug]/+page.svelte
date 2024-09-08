@@ -14,6 +14,10 @@
 	//		can I continue to use this? 
 </script>
 
+<svelte:head>
+	<title>{data.page[0].title}</title>
+</svelte:head>
+
 <main id="main">
 	<article>
 		<h1 class="pageTitle">{data.page[0].title}</h1>

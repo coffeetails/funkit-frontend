@@ -1,5 +1,5 @@
 <script lang="ts">
-	import News from '../components/News.svelte';
+	import UpdateBanner from '../components/UpdateBanner.svelte';
     import TextAreaShadow from '../components/TextAreaShadow.svelte';
     import { PortableText } from '@portabletext/svelte';
 	import type { PageData } from './$types';
@@ -9,7 +9,11 @@
 
 </script>
 
-<News />
+<svelte:head>
+	<title>{data.page[0].title}</title>
+</svelte:head>
+
+<UpdateBanner />
 <main id="main">
 	<article>
 		<PortableText value={data.page[0].content} />

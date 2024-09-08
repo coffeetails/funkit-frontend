@@ -61,10 +61,10 @@
 				</li>
 			{/each}
 
-			<li class:active={currentPath == "nyheter"} class="linkMenuJump">
-				<a href={`/nyheter`} on:click={() => displayMobileMenu = false} >Nyheter</a>
+			<li class:active={currentPath == "uppdateringar"} class="linkMenuJump">
+				<a href={`/uppdateringar`} on:click={() => displayMobileMenu = false} >Uppdateringar</a>
 			</li>
-			<li class:active={currentPath == "sponsorer"} class="linkMenuJump">
+			<li class:active={currentPath == "sponsorer"}>
 				<a href={`/sponsorer`} on:click={() => displayMobileMenu = false} >Sponsorer</a>
 			</li>
 

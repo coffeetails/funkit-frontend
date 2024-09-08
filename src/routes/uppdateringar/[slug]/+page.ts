@@ -1,4 +1,4 @@
-import { getCurrentNews } from '$lib/utils/sanity';
+import { getUpdate } from '$lib/utils/sanity';
 import { error } from '@sveltejs/kit';
 import type { PageLoad } from './$types';
 
@@ -6,7 +6,7 @@ import type { PageLoad } from './$types';
 export const load = (async ({ params }) => {
     // console.log("params", params);
     
-    const page = await getCurrentNews(params.slug);
+    const page = await getUpdate(params.slug);
 
     if (page) {
         // console.log("page load", page); 

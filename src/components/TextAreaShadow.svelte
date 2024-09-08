@@ -4,16 +4,15 @@
 <style>
     div {
         /* margin-top: auto; */
-        height: 4rem;
+        height: 0;
         left: 0;
         right: 0;
         bottom: 0;
         margin: -0.5rem -2rem;
         z-index: 2;
         position: sticky;
-        box-shadow: 
-            inset 0 -1rem 1rem -0.5rem #fff, 
-            0 1rem 0rem 0rem #fff;
-        /* border-bottom: 4px solid #5f5f5f; */
+        /* position: absolute; */
+        box-shadow: 0 0 2rem 2rem #fafafa;
+        /* border: 1px solid #5f5f5f; */
     }
 </style>
