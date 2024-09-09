@@ -2,18 +2,21 @@
 	import { getPageHome, getPageMenu } from '$lib/utils/sanity';
 	import { page } from '$app/stores'; 
     import Header from './Header.svelte';
+    import MenuLink from '../MenuLink.svelte';
 	
 	let currentPath = "";
 	
 	$: currentPath = getPathName($page.url.pathname);
 	let displayMobileMenu = false;
-	console.log("currentPath: ", currentPath);
+	// console.log("currentPath: ", currentPath);
 	
-
+	
 	function getPathName(path: string) {
 		if(!path || path == "/") {
+			// window.localStorage.setItem('currentPath', "/");
 			return "/";
 		} 
+		// window.localStorage.setItem('currentPath', path.substring(1));
 		return path.substring(1);
 	}
 	
@@ -23,14 +26,15 @@
 		console.log("neatLinebreak", newString);
 		return newString;
 	}
+
+
+	// const setLocalstorage = (data: string) => window.localStorage.setItem('currentPath', currentPath);
 </script>
 
 
 <Header bind:displayMobileMenu bind:currentPath />
   
-
-<div class={displayMobileMenu?'openBackdrop':''}>
-</div>
+<div class={displayMobileMenu?'openBackdrop':''}></div>
 <nav class={displayMobileMenu?'openNav':''}>
 	
 	{#await getPageHome(currentPath)}
@@ -39,44 +43,36 @@
 		<h1><a href={value.slug != "/" ? "/"+value.slug : "/"}>{@html neatLinebreak(value.title)}</a></h1>
 	{/await}
 
-	<h3>Meny</h3>
+	<!-- <h3>Meny</h3> -->
 	<a href="#main" class="a11yLink">Skippa menyn</a>
 
 	{#await getPageMenu(currentPath)}
-		<p>loading menu</p>		
+		<p>loading menu</p>	
+
 	{:then values} 
 	<ul>
-		
 		{#await getPageHome(currentPath)}
-		<li><a href={`/`} on:click={() => displayMobileMenu = false}>Hem</a></li>
+			<MenuLink displayMobileMenu={displayMobileMenu} currentPath={currentPath} slug="/" title="Hem" linkMenuJump={false} />
 		{:then value} 
-			<li class:active={currentPath == value.slug}>
-				<a href={value.slug != "/" ? "/"+value.slug : "/"} on:click={() => displayMobileMenu = false}>Hem</a>
-			</li>
+			<MenuLink displayMobileMenu={displayMobileMenu} currentPath={currentPath} slug={value.slug} title="Hem" linkMenuJump={false} />
 		{/await}
 
-			{#each values as linkData}
-				<li class:active={currentPath == linkData.slug}>
-					<a href={`/${linkData.slug}`} on:click={() => displayMobileMenu = false} >{@html neatLinebreak(linkData.title)}</a>
-				</li>
-			{/each}
+		{#each values as linkData}
+			<MenuLink displayMobileMenu={displayMobileMenu} currentPath={currentPath} slug={linkData.slug} title={linkData.title} linkMenuJump={false} />
+		{/each}
 
-			<li class:active={currentPath == "uppdateringar"} class="linkMenuJump">
-				<a href={`/uppdateringar`} on:click={() => displayMobileMenu = false} >Uppdateringar</a>
-			</li>
-			<li class:active={currentPath == "sponsorer"}>
-				<a href={`/sponsorer`} on:click={() => displayMobileMenu = false} >Sponsorer</a>
-			</li>
+		<MenuLink displayMobileMenu={displayMobileMenu} currentPath={currentPath} slug="uppdateringar" title="Uppdateringar" linkMenuJump={true} />
+		<MenuLink displayMobileMenu={displayMobileMenu} currentPath={currentPath} slug="sponsorer" title="Sponsorer" linkMenuJump={false} />
 
-			{#await getPageHome(currentPath)}
-				<span></span>
-			{:then value} 
-				{#if value.slug != "/"}
-					<li><a href={`/`} on:click={() => displayMobileMenu = false}>Till startsidan</a></li>
-				{/if}
-			{/await}
-
-		</ul>
+		{#await getPageHome(currentPath)}
+			<span></span>
+		{:then value} 
+			{#if value.slug != "/"}
+				<MenuLink displayMobileMenu={displayMobileMenu} currentPath={currentPath} slug="/" title="Till startsidan" linkMenuJump={false} />
+			{/if}
+		{/await}
+	</ul>
+	
 	{:catch error}
 		<p>Something went wrong: {error.message}</p>
 	{/await}
@@ -94,8 +90,6 @@
 	}
 
 	nav {
-		/* grid-row: -1/span -2; */
-		/* height: 100%; */
 		margin: 0.25rem;
 		border: var(--border-style);
 		border-radius: var(--small-border-radius);
@@ -142,44 +136,16 @@
 		padding: 0.25rem 0;
 		margin: 0;
 	}
-	.linkMenuJump {
-		margin-top: auto;
-	}
-
-	li a {
-		display: inline-block;
-		width: 100%;
-		font-family: "Lemon", serif;
-		border-bottom-color: transparent;
-		/* word-wrap: break-word; */
-	}
-	li a:hover {
-		border: 2px solid var(--black);
-	}
-
-	.active:before {
-		content: "🌸";
-		position: absolute;
-		left: -2rem;
-		height: 1.5rem;
-		width: 1.5rem;
-		text-align: center;
-		background-color: #fafafa;
-		border-radius: 2rem;
-		border: var(--border-style)
-	}
-
+	
 @media (max-width: 670px) {
 
     nav {
         display: none;
-		/* opacity: 0; */
-        /* position: absolute; */
         position: fixed;
         top: 5.5rem;
         bottom: 0.5rem;
-        left: 0.5rem;
-        right: 0.5rem;
+        left: 1rem;
+        right: 1rem;
         width: auto;
 		min-height: 80dvh;
 		max-width: 100vw;
@@ -200,9 +166,9 @@
 	ul {
 		height: 100%;
 	}
-	li {
+	/* li {
 		margin: 0.5rem 1rem;
-	}
+	} */
 
 	.openNav {
 		display: flex;
@@ -217,13 +183,8 @@
 		bottom: 0;
 		left: 0;
 		right: 0;
-    	/* height: 200%; */
-    	/* height: inherit; */
-		/* height: 200%;
-		max-height: 500dvh; */
 		background-color: #131a24d6;
 		background-image: url(background.svg);
-		/* overflow: hidden; */
 	}
 }
 </style>

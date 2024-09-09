@@ -61,7 +61,7 @@
 <style>
 	aside {
 		position: relative;
-		max-height: 10rem;
+		max-height: 8rem;
 		overflow: hidden;
 		margin: 0.25rem;
 		border: var(--border-style);
