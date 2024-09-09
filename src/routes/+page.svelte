@@ -1,6 +1,6 @@
 <script lang="ts">
-	import UpdateBanner from '../components/UpdateBanner.svelte';
-    import TextAreaShadow from '../components/TextAreaShadow.svelte';
+	import UpdateBanner from '$lib/components/layout/UpdateBanner.svelte';
+    import TextAreaShadow from '$lib/components/TextAreaShadow.svelte';
     import { PortableText } from '@portabletext/svelte';
 	import type { PageData } from './$types';
 

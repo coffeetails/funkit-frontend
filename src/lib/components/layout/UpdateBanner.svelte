@@ -1,7 +1,7 @@
 <script lang="ts">
     import { getLatestUpdate } from "$lib/utils/sanity";
     import { PortableText } from "@portabletext/svelte";
-    import TextAreaShadow from "./TextAreaShadow.svelte";
+    import TextAreaShadow from "$lib/components/TextAreaShadow.svelte";
 
 	function parseDate(rawDate: string | number | Date) {
 		let date = new Date(rawDate);

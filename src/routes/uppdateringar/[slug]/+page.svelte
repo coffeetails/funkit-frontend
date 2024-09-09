@@ -2,9 +2,9 @@
     import { PortableText } from '@portabletext/svelte';
     import { formatDate } from '$lib/utils';
     import { urlFor } from '$lib/utils/image';
-    import TextAreaShadow from '../../../components/TextAreaShadow.svelte';
+    import TextAreaShadow from '$lib/components/TextAreaShadow.svelte';
     import type { PageData } from './$types';
-    import ShareMedia from '../../../components/ShareMedia.svelte';
+    import ShareMedia from '$lib/components/ShareMedia.svelte';
     
 	function parseDate(rawDate: string | number | Date) {
 		let date = new Date(rawDate);
@@ -33,7 +33,9 @@
 	<div class="articleInfo">
 		<div class="publishInfo">
 			<p>Publicerad: {@html parseDate(data.page[0].created)}</p>
-			<p>Uppdaterad: {@html parseDate(data.page[0].updated)}</p>
+			{#if data.page[0].created != data.page[0].updated}
+				<p>Uppdaterad: {@html parseDate(data.page[0].updated)}</p>
+			{/if}
 		</div>
 
 		<ShareMedia />
@@ -72,6 +74,7 @@
 	.publishInfo > * {
 		font-size: 0.89rem;
 		padding: 0;
+		text-align: right;
 	}
 
 	@media (max-width: 670px) {
