@@ -32,6 +32,7 @@
         
         <div class="sectionFooter">
 			<p>{data.details ? data.details : " "}</p>
+			<!-- <TextAreaShadow /> -->
         </div>
     </section>
 {/each}
@@ -46,7 +47,7 @@
 		border: var(--border-style);
 		border-radius: var(--border-radius);
 		box-shadow: 0.25rem 0.25rem 0.5rem #5e5e5e;
-		max-width: 25rem;
+		max-width: 15rem;
 		overflow: hidden;
 		text-align: center;
 
@@ -81,13 +82,23 @@
 	
 	.imageLink {
 		border: none;
+		margin: 0;
+		padding: 0;
+		line-height: 0;
+		text-align: center;
 	}
 	a {
 		font-family: "Lemon", serif;
 	}
 
 	img {
-		max-height: 10rem;
+		display: block;
+		/* max-height: 10rem; */
+		max-height: 15rem;
+		width: 15rem;
+		margin: 0 auto;
+		object-fit: cover;
+		object-position: center;
 	}
 
 	@media (max-width: 670px) {

@@ -32,6 +32,7 @@ import TextAreaShadow from '$lib/components/TextAreaShadow.svelte';
 		display: flex;
 		flex-direction: row;
 		flex-wrap: wrap;
+		justify-content: space-around;
 		gap: 1.5rem;
 	}
 

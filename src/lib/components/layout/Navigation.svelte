@@ -27,8 +27,9 @@
 		return newString;
 	}
 
-
-	// const setLocalstorage = (data: string) => window.localStorage.setItem('currentPath', currentPath);
+	// if currentPath != "Sponsorer", "Nyheter", "Annan-Specialsida" {
+	// 		const setLocalstorage = (data: string) => window.localStorage.setItem('currentPath', currentPath);
+	// }
 </script>
 
 
