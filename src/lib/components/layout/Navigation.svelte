@@ -3,27 +3,65 @@
 	import { page } from '$app/stores'; 
     import Header from './Header.svelte';
     import MenuLink from '../MenuLink.svelte';
+    import { browser } from '$app/environment';
 	
 	let currentPath = "";
-	
-	$: currentPath = getPathName($page.url.pathname);
+	let currentMenu = "";
 	let displayMobileMenu = false;
-	// console.log("currentPath: ", currentPath);
+	const specialItems = [
+		{slug: "uppdateringar", title: "Uppdateringar"},
+		{slug: "sponsorer", title: "Sponsorer"}
+	];
+	// const specialItems = ["Uppdateringar", "Sponsorer"];
+	// console.table(specialItems);
+	
+
+	$: currentPath = getPathName($page.url.pathname);
+	$: currentMenu = getPathMenu($page.url.pathname);
 	
 	
 	function getPathName(path: string) {
 		if(!path || path == "/") {
-			// window.localStorage.setItem('currentPath', "/");
 			return "/";
 		} 
-		// window.localStorage.setItem('currentPath', path.substring(1));
+
 		return path.substring(1);
 	}
-	
+
+	function getPathMenu(path: string) {
+		// if(!path || path == "/") {
+		// 	return "/";
+		// } 
+
+		let isSpecial = false;
+		specialItems.forEach(specialPath => {
+			if(path == "/"+specialPath.slug) {
+				// console.log("special path");
+				isSpecial = true;
+			}
+		});
+		// console.log(isSpecial);
+		if(browser && !isSpecial) {
+			window.localStorage.setItem('currentPath', path);
+		} else if(browser && isSpecial) {
+			let previousPath = window.localStorage.getItem('currentPath');
+			if(previousPath) {
+				return previousPath.substring(1);
+			}
+		}
+
+		if(!path || path == "/") {
+			return "/";
+		} 
+
+		return path.substring(1);
+	}
+
+
 	function neatLinebreak(string:string) {
 		const regExTitle = /(?:\d(?:\d*)|[A-ZÅÄÖØÆ](?:[A-ZÅÄÖØÆ]*))/g;
 		let newString = string.replace(regExTitle, `&#8203;$&`);
-		console.log("neatLinebreak", newString);
+		// console.log("neatLinebreak", newString);
 		return newString;
 	}
 
@@ -32,13 +70,12 @@
 	// }
 </script>
 
-
 <Header bind:displayMobileMenu bind:currentPath />
   
 <div class={displayMobileMenu?'openBackdrop':''}></div>
 <nav class={displayMobileMenu?'openNav':''}>
 	
-	{#await getPageHome(currentPath)}
+	{#await getPageHome(currentMenu)}
 	<h1><a href="/">Fun&#8203;Kit</a></h1>
 	{:then value}
 		<h1><a href={value.slug != "/" ? "/"+value.slug : "/"}>{@html neatLinebreak(value.title)}</a></h1>
@@ -47,12 +84,12 @@
 	<!-- <h3>Meny</h3> -->
 	<a href="#main" class="a11yLink">Skippa menyn</a>
 
-	{#await getPageMenu(currentPath)}
+	{#await getPageMenu(currentMenu)}
 		<p>loading menu</p>	
 
 	{:then values} 
 	<ul>
-		{#await getPageHome(currentPath)}
+		{#await getPageHome(currentMenu)}
 			<MenuLink displayMobileMenu={displayMobileMenu} currentPath={currentPath} slug="/" title="Hem" linkMenuJump={false} />
 		{:then value} 
 			<MenuLink displayMobileMenu={displayMobileMenu} currentPath={currentPath} slug={value.slug} title="Hem" linkMenuJump={false} />
@@ -62,10 +99,10 @@
 			<MenuLink displayMobileMenu={displayMobileMenu} currentPath={currentPath} slug={linkData.slug} title={linkData.title} linkMenuJump={false} />
 		{/each}
 
-		<MenuLink displayMobileMenu={displayMobileMenu} currentPath={currentPath} slug="uppdateringar" title="Uppdateringar" linkMenuJump={true} />
-		<MenuLink displayMobileMenu={displayMobileMenu} currentPath={currentPath} slug="sponsorer" title="Sponsorer" linkMenuJump={false} />
+		<MenuLink displayMobileMenu={displayMobileMenu} currentPath={currentPath} slug={specialItems[0].slug} title={specialItems[0].title} linkMenuJump={true} />
+		<MenuLink displayMobileMenu={displayMobileMenu} currentPath={currentPath} slug={specialItems[1].slug} title={specialItems[1].title} linkMenuJump={false} />
 
-		{#await getPageHome(currentPath)}
+		{#await getPageHome(currentMenu)}
 			<span></span>
 		{:then value} 
 			{#if value.slug != "/"}

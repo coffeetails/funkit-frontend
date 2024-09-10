@@ -5,7 +5,7 @@
 	
 
     export let cardData;
-	console.log(cardData);
+	// console.log(cardData);
 	
 </script>
 

@@ -1,6 +1,6 @@
 <script lang="ts">
     import SponsorCard from '$lib/components/SponsorCard.svelte';
-import TextAreaShadow from '$lib/components/TextAreaShadow.svelte';
+	import TextAreaShadow from '$lib/components/TextAreaShadow.svelte';
     import { getSponsors } from '$lib/utils/sanity';
 </script>
 
