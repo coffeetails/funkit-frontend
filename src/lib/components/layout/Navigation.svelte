@@ -29,18 +29,14 @@
 	}
 
 	function getPathMenu(path: string) {
-		// if(!path || path == "/") {
-		// 	return "/";
-		// } 
-
 		let isSpecial = false;
+
 		specialItems.forEach(specialPath => {
 			if(path == "/"+specialPath.slug) {
-				// console.log("special path");
 				isSpecial = true;
 			}
 		});
-		// console.log(isSpecial);
+		
 		if(browser && !isSpecial) {
 			window.localStorage.setItem('currentPath', path);
 		} else if(browser && isSpecial) {
@@ -48,9 +44,7 @@
 			if(previousPath) {
 				return previousPath.substring(1);
 			}
-		}
-
-		if(!path || path == "/") {
+		} else if(!path || path == "/") {
 			return "/";
 		} 
 
@@ -61,13 +55,9 @@
 	function neatLinebreak(string:string) {
 		const regExTitle = /(?:\d(?:\d*)|[A-ZÅÄÖØÆ](?:[A-ZÅÄÖØÆ]*))/g;
 		let newString = string.replace(regExTitle, `&#8203;$&`);
-		// console.log("neatLinebreak", newString);
 		return newString;
 	}
 
-	// if currentPath != "Sponsorer", "Nyheter", "Annan-Specialsida" {
-	// 		const setLocalstorage = (data: string) => window.localStorage.setItem('currentPath', currentPath);
-	// }
 </script>
 
 <Header bind:displayMobileMenu bind:currentPath />
