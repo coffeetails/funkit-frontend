@@ -80,23 +80,23 @@
 	{:then values} 
 	<ul>
 		{#await getPageHome(currentMenu)}
-			<MenuLink displayMobileMenu={displayMobileMenu} currentPath={currentPath} slug="/" title="Hem" linkMenuJump={false} />
+			<MenuLink bind:displayMobileMenu={displayMobileMenu} currentPath={currentPath} slug="/" title="Hem" linkMenuJump={false} />
 		{:then value} 
-			<MenuLink displayMobileMenu={displayMobileMenu} currentPath={currentPath} slug={value.slug} title="Hem" linkMenuJump={false} />
+			<MenuLink bind:displayMobileMenu={displayMobileMenu} currentPath={currentPath} slug={value.slug} title="Hem" linkMenuJump={false} />
 		{/await}
 
 		{#each values as linkData}
-			<MenuLink displayMobileMenu={displayMobileMenu} currentPath={currentPath} slug={linkData.slug} title={linkData.title} linkMenuJump={false} />
+			<MenuLink bind:displayMobileMenu={displayMobileMenu} currentPath={currentPath} slug={linkData.slug} title={linkData.title} linkMenuJump={false} />
 		{/each}
 
-		<MenuLink displayMobileMenu={displayMobileMenu} currentPath={currentPath} slug={specialItems[0].slug} title={specialItems[0].title} linkMenuJump={true} />
-		<MenuLink displayMobileMenu={displayMobileMenu} currentPath={currentPath} slug={specialItems[1].slug} title={specialItems[1].title} linkMenuJump={false} />
+		<MenuLink bind:displayMobileMenu={displayMobileMenu} currentPath={currentPath} slug={specialItems[0].slug} title={specialItems[0].title} linkMenuJump={true} />
+		<MenuLink bind:displayMobileMenu={displayMobileMenu} currentPath={currentPath} slug={specialItems[1].slug} title={specialItems[1].title} linkMenuJump={false} />
 
 		{#await getPageHome(currentMenu)}
 			<span></span>
 		{:then value} 
 			{#if value.slug != "/"}
-				<MenuLink displayMobileMenu={displayMobileMenu} currentPath={currentPath} slug="/" title="Till startsidan" linkMenuJump={false} />
+				<MenuLink bind:displayMobileMenu={displayMobileMenu} currentPath={currentPath} slug="/" title="Till startsidan" linkMenuJump={false} />
 			{/if}
 		{/await}
 	</ul>

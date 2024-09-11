@@ -1,3 +1,13 @@
+
+h1, h2, h3, h4, h5, h6 {
+    word-wrap: break-word;
+}
+p, h1, h2, h3, h4, h5, h6, a {
+    hyphens: auto !important; 
+    /* word-wrap: break-word; */
+    /* word-break: break-all; */
+}
+
 h1,h2,h3,h4,h5,h6 {
     font-family: "Lemon", serif;
     padding: 0.25rem 0;
