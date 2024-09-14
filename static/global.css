@@ -49,6 +49,7 @@ article, .mainContentWrapper {
     max-height: inherit;
     height: inherit;
     padding: 0.5rem 2rem 3.5rem;
+    overflow-x: scroll;
 }
 
 @media (max-width: 670px) {

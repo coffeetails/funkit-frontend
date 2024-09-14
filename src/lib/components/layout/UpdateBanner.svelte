@@ -55,7 +55,7 @@
 		</a>
 		<!-- <span class="continueRead">...<a href={'uppdateringar/'+update.slug}>fortsätt läsa.</a></span> -->
 		{/await}
-	<img src="https://picsum.photos/100" alt="mascot" />
+	<!-- <img src="https://picsum.photos/100" alt="mascot" /> -->
 </aside>
 
 <style>

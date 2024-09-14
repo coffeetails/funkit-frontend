@@ -11,6 +11,7 @@ p, h1, h2, h3, h4, h5, h6, a {
 h1,h2,h3,h4,h5,h6 {
     font-family: "Lemon", serif;
     padding: 0.25rem 0;
+    text-align: center;
 }
 h1 { font-size: 2.25rem; }
 h2 { font-size: 2.00rem; }

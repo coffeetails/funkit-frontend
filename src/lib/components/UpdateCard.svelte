@@ -47,7 +47,7 @@
             <p>{@html parseDate(data.created)}</p>
         </div>
 
-        <a class="wrapper" href={"uppdateringar/"+cardData.slug}>
+        <a class="wrapper" href={"uppdateringar/"+data.slug}>
                 <div class="articleTeaser">
                     <PortableText value={data.content} />
                 </div>
