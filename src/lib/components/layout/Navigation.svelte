@@ -13,10 +13,38 @@
 		{slug: "sponsorer", title: "Sponsorer"}
 	];
 
+	$: reloadMenu = async () => {
+		if(!browser) {
+			return;
+		}
+		
+		let previousHome = window.localStorage.getItem('home');
+		
+		let currentHome = await getPageHome(getPathMenu($page.url.pathname));
+		window.localStorage.setItem('home', currentHome.title);
+		
+		// console.log("previousHome", previousHome);
+		// console.log("currentHome", currentHome.title);
+		// console.log("reload menu ", currentHome.title != previousHome);
+		
+		if(currentHome.title == previousHome) {
+			// console.log("Reload menu: false");
+			return false;
+		} else if(currentHome.title != previousHome) {
+			currentMenu = getPathMenu($page.url.pathname);
+			// console.log("Reload menu: true");
+			return true;
+		} else {
+			console.log("woah, that's weird");
+		}
+	}
+
+	$: reloadMenu();
+	$: console.log("reloadMenu", reloadMenu());
+	
 	$: currentPath = getPathName($page.url.pathname);
-	$: currentMenu = getPathMenu($page.url.pathname);
 	
-	
+
 	function getPathName(path: string) {
 		if(!path || path == "/") {
 			return "/";
@@ -34,9 +62,9 @@
 		});
 		
 		if(browser && !isSpecial) {
-			window.localStorage.setItem('currentPath', path);
+			window.localStorage.setItem('path', path);
 		} else if(browser && isSpecial) {
-			let previousPath = window.localStorage.getItem('currentPath');
+			let previousPath = window.localStorage.getItem('path');
 			if(previousPath) {
 				return previousPath.substring(1);
 			}
@@ -60,7 +88,7 @@
   
 <div class={displayMobileMenu?'openBackdrop':''}></div>
 <nav class={displayMobileMenu?'openNav':''}>
-	
+
 	{#await getPageHome(currentMenu)}
 	<h1><a href="/">Fun&#8203;Kit</a></h1>
 	{:then value}
