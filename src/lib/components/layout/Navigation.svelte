@@ -12,9 +12,6 @@
 		{slug: "uppdateringar", title: "Uppdateringar"},
 		{slug: "sponsorer", title: "Sponsorer"}
 	];
-	// const specialItems = ["Uppdateringar", "Sponsorer"];
-	// console.table(specialItems);
-	
 
 	$: currentPath = getPathName($page.url.pathname);
 	$: currentMenu = getPathMenu($page.url.pathname);
@@ -24,7 +21,6 @@
 		if(!path || path == "/") {
 			return "/";
 		} 
-
 		return path.substring(1);
 	}
 
@@ -89,6 +85,7 @@
 			<MenuLink bind:displayMobileMenu={displayMobileMenu} currentPath={currentPath} slug={linkData.slug} title={linkData.title} linkMenuJump={false} />
 		{/each}
 
+		<!-- special paths -->
 		<MenuLink bind:displayMobileMenu={displayMobileMenu} currentPath={currentPath} slug={specialItems[0].slug} title={specialItems[0].title} linkMenuJump={true} />
 		<MenuLink bind:displayMobileMenu={displayMobileMenu} currentPath={currentPath} slug={specialItems[1].slug} title={specialItems[1].title} linkMenuJump={false} />
 
