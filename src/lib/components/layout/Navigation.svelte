@@ -89,13 +89,8 @@
 <div class={displayMobileMenu?'openBackdrop':''}></div>
 <nav class={displayMobileMenu?'openNav':''}>
 
-	{#await getPageHome(currentMenu)}
 	<h1><a href="/">Fun&#8203;Kit</a></h1>
-	{:then value}
-		<h1><a href={value.slug != "/" ? "/"+value.slug : "/"}>{@html neatLinebreak(value.title)}</a></h1>
-	{/await}
 
-	<!-- <h3>Meny</h3> -->
 	<a href="#main" class="a11yLink">Skippa menyn</a>
 
 	{#await getPageMenu(currentMenu)}
@@ -106,7 +101,11 @@
 		{#await getPageHome(currentMenu)}
 			<MenuLink bind:displayMobileMenu={displayMobileMenu} currentPath={currentPath} slug="/" title="Hem" linkMenuJump={false} />
 		{:then value} 
-			<MenuLink bind:displayMobileMenu={displayMobileMenu} currentPath={currentPath} slug={value.slug} title="Hem" linkMenuJump={false} />
+			{#if value.slug != "/"}
+				<MenuLink bind:displayMobileMenu={displayMobileMenu} currentPath={currentPath} slug={value.slug} title={value.title} linkMenuJump={false} />
+			{:else}
+				<MenuLink bind:displayMobileMenu={displayMobileMenu} currentPath={currentPath} slug={value.slug} title="Hem" linkMenuJump={false} />
+			{/if}
 		{/await}
 
 		{#each values as linkData}
@@ -150,8 +149,7 @@
 		border-bottom-left-radius: var(--border-radius);
 		padding: 0.5rem 1rem;
 		background-color: #fafafa75;
-		width: fit-content;
-		max-width: 15rem;
+		width: 14rem;
 		
 		display: flex;
 		flex-direction: column;
@@ -173,10 +171,10 @@
 		color: var(--black);
 	}
 
-    nav >:nth-child(2) {
+    /* nav >:nth-child(2) {
         padding: 1rem 1rem;
         text-align: center;
-    }
+    } */
 	
 	ul {
 		display:flex;
@@ -190,54 +188,57 @@
 		margin: 0;
 	}
 	
-@media (max-width: 670px) {
+	@media (max-width: 670px), (max-height: 400px) {
 
-    nav {
-        display: none;
-        position: fixed;
-        top: 5.5rem;
-        bottom: 0.5rem;
-        left: 1rem;
-        right: 1rem;
-        width: auto;
-		min-height: 80dvh;
-		max-width: 100vw;
-        z-index: 15;
-        background-color: #fafafa;
-        border-radius: var(--border-radius);
-	}
+		nav {
+			display: none;
+			position: fixed;
+			top: 5.5rem;
+			bottom: 0.5rem;
+			left: 1rem;
+			right: 1rem;
+			width: auto;
+			/* height: 80dvh; */
+			/* min-height: 80dvh; */
+			max-width: 100vw;
+			z-index: 15;
+			background-color: #fafafa;
+			border-radius: var(--border-radius);
+			
+		}
 
-	nav >:nth-child(1) {
-		display: none;
-	}
-	nav >:nth-child(2) {
-		padding: 1rem 1rem;
-		text-align: center;
-		font-size: 2rem;
-	}
+		nav >:nth-child(1) {
+			display: none;
+		}
+		
+		ul {
+			flex: 1 1 auto;
 
-	ul {
-		height: 100%;
-	}
-	/* li {
-		margin: 0.5rem 1rem;
-	} */
+			margin-bottom: 1rem;
+			flex-wrap: wrap;	
+			/* height: 100%; */
+		}
+		ul * {
+			flex: 1 1 auto;
+		}
 
-	.openNav {
-		display: flex;
+
+		.openNav {
+			display: flex;
+		}
+		:global(body):has(.openNav) {
+			overflow: hidden;
+		}
+		.openBackdrop { 
+			z-index: 10;
+			position: fixed;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			background-color: #131a24d6;
+			background-image: url(background.svg);
+		}
 	}
-	:global(body):has(.openNav) {
-		overflow: hidden;
-	}
-	.openBackdrop { 
-		z-index: 10;
-		position: fixed;
-		top: 0;
-		bottom: 0;
-		left: 0;
-		right: 0;
-		background-color: #131a24d6;
-		background-image: url(background.svg);
-	}
-}
+	
 </style>

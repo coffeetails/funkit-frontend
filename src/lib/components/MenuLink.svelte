@@ -1,19 +1,10 @@
 <script lang="ts">
 
-export let displayMobileMenu;
-export let currentPath;
-export let slug;
-export let title;
-export let linkMenuJump;
-
-// console.table({
-//     "displayMobileMenu": displayMobileMenu,
-//     "currentPath": currentPath,
-//     "slug": slug,
-//     "title": title,
-//     "linkMenuJump": linkMenuJump
-// });
-
+	export let displayMobileMenu;
+	export let currentPath;
+	export let slug;
+	export let title;
+	export let linkMenuJump;
 </script>
 
 <li class:active={currentPath == slug} class={linkMenuJump ? "linkMenuJump" : ""}>
@@ -51,13 +42,15 @@ export let linkMenuJump;
 		text-align: center;
 		background-color: #fafafa;
 		border-radius: 2rem;
-		border: var(--border-style)
+		border: var(--border-style);
 	}
 
-    @media (max-width: 670px) {
-        /* li {
-            margin: 0.5rem 1rem;
-        } */
-    }
-
+	@media (max-width: 670px), (max-height: 400px) {
+		.linkMenuJump {
+			margin-top: 0;
+		}
+		li {
+			margin-right: 3rem;
+		}
+	}
 </style>

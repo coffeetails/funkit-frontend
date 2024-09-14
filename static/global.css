@@ -1,12 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Lemon&display=swap');
 
 :root {
-    --border-radius: 25px;
-    --small-border-radius: 2px;
-    --border-style: 2px solid #ffffff83;
-    --black: #0a0a0a;
-    --gray: #858585;
-
     background: url(background.svg);
     background-size: cover;
     background-position: sticky;
@@ -36,11 +30,11 @@ body {
 
 main {
     position: relative;
-    max-height: 40rem;
+    max-height: var(--content-height);
     height: 100%;
     margin: 0.25rem;
     border: var(--border-style);
-    background-color: #fafafa;
+    background-color: var(--white);
     overflow: hidden;
 }
 article, .mainContentWrapper {
@@ -52,7 +46,8 @@ article, .mainContentWrapper {
     overflow-x: scroll;
 }
 
-@media (max-width: 670px) {
+/* Mobile */
+@media (max-width: 670px), (max-height: 400px) {
     body {
         width: 100dvw;
         margin: 0 auto;

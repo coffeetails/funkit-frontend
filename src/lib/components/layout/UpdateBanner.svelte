@@ -36,24 +36,23 @@
 	}
 
 	$: innerWidth = 0;
+	$: innerHeight = 0;
 </script>
 
-<svelte:window bind:innerWidth />
+<svelte:window bind:innerWidth bind:innerHeight />
 
 <aside>
 	{#await getLatestUpdate()}
 	Hämtar senaste uppdateringen...
 	{:then update} 
 		<a class="textWrapper" href={"uppdateringar/"+update.slug}>
-			<!-- <i>Senaste uppdateringen: </i> -->
 			<h5><a href={"uppdateringar/"+update.slug}>Senaste uppdateringen: {update.title}</a></h5>
 			<i>{@html parseDate(update.created)}</i>
-			{#if innerWidth > 900}
+			{#if innerWidth > 900 && innerHeight > 400}
 				<PortableText value={update.content}  />
 				<TextAreaShadow />
 			{/if}
 		</a>
-		<!-- <span class="continueRead">...<a href={'uppdateringar/'+update.slug}>fortsätt läsa.</a></span> -->
 		{/await}
 	<!-- <img src="https://picsum.photos/100" alt="mascot" /> -->
 </aside>
@@ -61,7 +60,7 @@
 <style>
 	aside {
 		position: relative;
-		max-height: 8rem;
+		max-height: 10rem;
 		overflow: hidden;
 		margin: 0.25rem;
 		border: var(--border-style);
@@ -85,17 +84,6 @@
 		white-space: nowrap;
 		align-self: end;
 	}
-    .continueRead {
-		position: absolute;
-		bottom: 1rem;
-		/* left: 0; */
-		right: 7.25rem;
-		padding: 0 0.25rem;
-		/* border: 1px solid yellow; */
-		background-color: #fafafa;
-		z-index: 3;
-		box-shadow: -0.5rem 0rem 0.5rem 0.25rem #fafafa;
-	}
     img {
 		max-height: 9rem;
 		height: 100%;
@@ -105,28 +93,29 @@
     }
 
 
+	/* Tablet */
 	@media (min-width: 671px) and (max-width: 900px) {
-		aside {
-			/* height: 5rem; */
-		}
-		.textWrapper {
-			/* height: 6rem; */
-		}
 		img {
 			max-height: 3rem;
 		}
 	}
 	
+	/* Mobile */
 	@media (max-width: 670px) {
 		aside {
 			border-top-left-radius: var(--border-radius);
-			/* height: 4.5rem; */
-		}
-		.textWrapper {
-			/* height: 7rem; */
 		}
 		img {
 			display: none;
+		}
+	}
+
+	@media (max-height: 400px) {
+		aside {
+			border-top-left-radius: var(--border-radius);
+		}
+		img {
+			max-height: 3rem;
 		}
 	}
 </style>

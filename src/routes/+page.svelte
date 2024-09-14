@@ -28,7 +28,7 @@
 		border-bottom-right-radius: var(--border-radius);
 	}
 	
-	@media (max-width: 670px) {
+	@media (max-width: 670px), (max-height: 400px) {
 		main {
 			border-bottom-left-radius: var(--border-radius);
 		}

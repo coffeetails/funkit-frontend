@@ -14,10 +14,11 @@
 	.contentWrapper {
 		margin: 1rem;
 		padding: 1rem 0;
-		width: 70rem;
-		height: 70dvh;
+		width: var(--content-width);
+		/* height: 80dvh; */
+		/* border: 1px solid blue; */
 		/* width: fit-content; */
-		max-height: 40rem;
+		max-height: var(--content-height);
 
 		display: grid;
 		/* justify-items: stretch;
@@ -26,7 +27,7 @@
 		align-content: stretch; */
 		/* grid-template-columns: repeat(5, auto); */
 		/* grid-template-columns: repeat(2, auto); */
-		grid-template-columns: 1fr 4fr;
+		grid-template-columns: 0fr 1fr;
 	}
 	.yetAnotherWrapper {
 		/* align-self: stretch;
@@ -39,7 +40,8 @@
 		align-items: stretch;
 	}
 	
-	@media (max-width: 670px) {
+	/* Mobile */
+	@media (max-width: 670px), (max-height: 400px) {
 		div {
 			height: auto;
 		}

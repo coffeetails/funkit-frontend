@@ -1,0 +1,13 @@
+:root {
+    --border-radius: 25px;
+    --small-border-radius: 2px;
+    --border-style: 2px solid #ffffff83;
+
+    --black: #0a0a0a;
+    --gray: #858585;
+    --white: #fafafa;
+
+    --font-size: 1rem;
+    --content-height: 50rem;
+    --content-width: 90rem;
+}

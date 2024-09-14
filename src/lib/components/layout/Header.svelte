@@ -139,7 +139,7 @@
     left: 50%;
     }
 
-    @media (min-width: 670px) {
+    @media (min-width: 670px) and (min-height: 400px){
         header {
             display: none;
         }
