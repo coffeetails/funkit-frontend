@@ -137,8 +137,8 @@
 
 <aside class='connect'>
 	<p>Connecta:</p> 
-	<a href="https://www.facebook.com/profile.php?id=61557707468680"><img src="/icons/icons8-facebook.svg" alt="Facebook icon" class="iconBig" /></a>
-	<a href="https://discord.gg/P2zpnBYREr"><img src="/icons/icons8-discord-new.svg" alt="Discord icon" class="iconSmall" /></a>
+	<a target="_blank" href="https://www.facebook.com/profile.php?id=61557707468680"><img src="/icons/icons8-facebook.svg" alt="Facebook icon" class="iconBig" /></a>
+	<a target="_blank" href="https://discord.gg/P2zpnBYREr"><img src="/icons/icons8-discord-new.svg" alt="Discord icon" class="iconSmall" /></a>
 </aside>
 </div>
 
