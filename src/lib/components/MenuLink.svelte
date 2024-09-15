@@ -43,6 +43,7 @@
 		background-color: #fafafa;
 		border-radius: 2rem;
 		border: var(--border-style);
+		box-shadow: 0.1rem 0.3rem 0.5rem #0a0a0aae;
 	}
 
 	@media (max-width: 670px), (max-height: 400px) {

@@ -40,7 +40,7 @@
 	}
 
 	$: reloadMenu();
-	$: console.log("reloadMenu", reloadMenu());
+	// $: console.log("reloadMenu", reloadMenu());
 	
 	$: currentPath = getPathName($page.url.pathname);
 	
@@ -86,8 +86,12 @@
 
 <Header bind:displayMobileMenu bind:currentPath />
   
-<div class={displayMobileMenu?'openBackdrop':''}></div>
-<nav class={displayMobileMenu?'openNav':''}>
+<div class={displayMobileMenu?'openBackdrop backdrop':'backdrop'}></div>
+
+<!-- <div class="navbar"> -->
+<div class={displayMobileMenu?'openNav navbar':'navbar'}>
+<nav>
+<!-- <nav class={displayMobileMenu?'openNav':''}> -->
 
 	<h1><a href="/">Fun&#8203;Kit</a></h1>
 
@@ -131,30 +135,51 @@
 
 </nav>
 
+<aside class='connect'>
+	<p>Connecta:</p> 
+	<a href="https://www.facebook.com/profile.php?id=61557707468680"><img src="/icons/icons8-facebook.svg" alt="Facebook icon" class="iconBig" /></a>
+	<a href="https://discord.gg/P2zpnBYREr"><img src="/icons/icons8-discord-new.svg" alt="Discord icon" class="iconSmall" /></a>
+</aside>
+</div>
+
+
 <style>
 
 	/* TODO: add the cool "bubble" to indicate what page you're on - 1week */
 
-	div {
+	.backdrop {
 		position: absolute;
 		top: 0;
 		left: 0;
 	}
 
-	nav {
-		margin: 0.25rem;
+	/* nav { */
+	.navbar {
+		/* margin: 0.25rem;
 		border: var(--border-style);
 		border-radius: var(--small-border-radius);
 		border-top-left-radius: var(--border-radius);
 		border-bottom-left-radius: var(--border-radius);
 		padding: 0.5rem 1rem;
 		background-color: #fafafa75;
+		width: 14rem; */
+		display: flex;
+		flex-direction: column;
+	}
+
+	nav {
+		flex-grow: 2;
+		margin: 0.25rem;
+		border: var(--border-style);
+		border-radius: var(--small-border-radius);
+		border-top-left-radius: var(--border-radius);
+		padding: 0.5rem 1rem;
+		background-color: #fafafa75;
 		width: 14rem;
 		
 		display: flex;
 		flex-direction: column;
-	}
-    
+	}    
     nav >:nth-child(1) {
         padding: 1rem 0.5rem;
         font-size: 2.5rem;
@@ -171,11 +196,6 @@
 		color: var(--black);
 	}
 
-    /* nav >:nth-child(2) {
-        padding: 1rem 1rem;
-        text-align: center;
-    } */
-	
 	ul {
 		display:flex;
 		flex-direction: column;
@@ -187,24 +207,80 @@
 		padding: 0.25rem 0;
 		margin: 0;
 	}
-	
+
+	.connect {
+		margin: 0.25rem;
+		border: var(--border-style);
+		border-radius: var(--small-border-radius);
+		border-bottom-left-radius: var(--border-radius);
+		padding: 0.5rem 1rem;
+		background-color: #fafafa75;
+		width: 14rem;
+
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		align-items: center;
+	}
+	.connect a {
+		border: none;
+		background: none;
+	}
+	.connect img {
+		border-radius: var(--small-border-radius);
+	}
+	.connect img:hover {
+		background-color: #fafafa9f;
+		border: 1px solid var(--black);
+	}
+
+	.iconBig {
+		height: 1.5rem;
+	} 
+	.iconBig:hover {
+		transform: scale(1.3,1.3);
+	}
+	.iconSmall {
+		height: 1.6rem;
+	}
+	.iconSmall:hover {
+		transform: scale(1.2,1.2);
+	}
+
+
 	@media (max-width: 670px), (max-height: 400px) {
 
-		nav {
+		.navbar {
+			/* border: 1px solid orangered; */
 			display: none;
+			/* position: absolute; */
 			position: fixed;
 			top: 5.5rem;
 			bottom: 0.5rem;
 			left: 1rem;
 			right: 1rem;
-			width: auto;
+			/* width: auto; */
 			/* height: 80dvh; */
 			/* min-height: 80dvh; */
-			max-width: 100vw;
+			/* max-width: 100vw;
+			max-height: 100vw; */
 			z-index: 15;
+		}
+		
+		nav {
+			/* flex: 1 1 auto; */
+			height: min-content;
+			width: initial;
 			background-color: #fafafa;
-			border-radius: var(--border-radius);
-			
+			border-top-left-radius:  var(--border-radius);
+			border-top-right-radius:  var(--border-radius);
+		}
+		.connect {
+			/* flex: 1 1 auto; */
+			width: initial;
+			background-color: #fafafa;
+			border-bottom-left-radius:  var(--border-radius);
+			border-bottom-right-radius:  var(--border-radius);
 		}
 
 		nav >:nth-child(1) {
@@ -212,19 +288,22 @@
 		}
 		
 		ul {
-			flex: 1 1 auto;
+			/* flex: 1 1 auto; */
 
 			margin-bottom: 1rem;
-			flex-wrap: wrap;	
-			/* height: 100%; */
+			flex-direction: column;
+			flex-wrap: wrap;
+			height: 40dvh;
 		}
 		ul * {
+			/* width: 50%; */
 			flex: 1 1 auto;
 		}
 
 
 		.openNav {
 			display: flex;
+			align-items: stretch;
 		}
 		:global(body):has(.openNav) {
 			overflow: hidden;

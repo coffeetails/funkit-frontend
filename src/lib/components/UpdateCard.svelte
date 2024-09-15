@@ -55,9 +55,9 @@
             <!-- </div> -->
         </a>
         
-        <div class="sectionInfo sectionFooter">
+        <!-- <div class="sectionInfo sectionFooter">
             <ShareMedia />
-        </div>
+        </div> -->
     </section>
 {/each}
 

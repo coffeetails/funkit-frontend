@@ -7,10 +7,25 @@
 	<Navigation />
 	<div class="yetAnotherWrapper">
 		<slot />
+		<span>
+			<a target="_blank" href="https://icons8.com/icons/forma-light">Icons</a> by <a target="_blank" href="https://icons8.com">Icons8</a>
+		</span>
 	</div>
 </div>
 
+
 <style>
+	span {
+		position: absolute;
+		bottom: 0.5rem;
+		right: 1rem;
+		text-align: right;
+		font-size: 0.7rem;
+	}
+	span a {
+		border-width: 1px;
+	}
+
 	.contentWrapper {
 		margin: 1rem;
 		padding: 1rem 0;
@@ -30,6 +45,7 @@
 		grid-template-columns: 0fr 1fr;
 	}
 	.yetAnotherWrapper {
+		display: relative;
 		/* align-self: stretch;
 		justify-self: stretch; */
 		/* grid-column: 2/span 4; */
@@ -54,6 +70,9 @@
 			/* width: 90%; */
 			width: inherit;
 			grid-column: 1/3;
+		}
+		span {
+			position: relative;
 		}
 	}
 </style>

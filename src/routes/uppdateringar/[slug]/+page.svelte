@@ -38,7 +38,7 @@
 			{/if}
 		</div>
 
-		<ShareMedia />
+		<!-- <ShareMedia /> -->
 	</div>
 </main>
 
@@ -77,7 +77,7 @@
 		text-align: right;
 	}
 
-	@media (max-width: 670px) {
+	@media (max-width: 670px), (max-height: 400px) {
 		main {
 			border-radius: var(--border-radius);
 		}
