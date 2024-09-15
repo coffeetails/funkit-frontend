@@ -139,7 +139,7 @@
     left: 50%;
     }
 
-    @media (min-width: 670px) and (min-height: 400px){
+    @media (min-width: 670px) and (min-height: 586px){
         header {
             display: none;
         }

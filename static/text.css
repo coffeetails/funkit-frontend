@@ -43,11 +43,11 @@ a:hover {
 }
 .a11yLink {
     transition: 0.5s;
-    transform-origin: left center;
+    transform-origin: top center;
 }
 .a11yLink:not(:focus) {
     display: inline-block;
-    transform: rotateY(90deg);
+    transform: rotateX(90deg);
 }
 code {
     font-family: 'Roboto Mono', monospace;

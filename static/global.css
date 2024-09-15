@@ -47,7 +47,7 @@ article, .mainContentWrapper {
 }
 
 /* Mobile */
-@media (max-width: 670px), (max-height: 400px) {
+@media (max-width: 670px), (max-height: 585px) {
     body {
         width: 100dvw;
         margin: 0 auto;

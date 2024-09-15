@@ -46,7 +46,7 @@
 		box-shadow: 0.1rem 0.3rem 0.5rem #0a0a0aae;
 	}
 
-	@media (max-width: 670px), (max-height: 400px) {
+	@media (max-width: 670px), (max-height: 585px) {
 		.linkMenuJump {
 			margin-top: 0;
 		}

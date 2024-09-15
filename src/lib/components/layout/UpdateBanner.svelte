@@ -110,7 +110,7 @@
 		}
 	}
 
-	@media (max-height: 400px) {
+	@media (max-height: 585px) {
 		aside {
 			border-top-left-radius: var(--border-radius);
 		}

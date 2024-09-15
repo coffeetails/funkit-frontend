@@ -77,7 +77,7 @@
 		text-align: right;
 	}
 
-	@media (max-width: 670px), (max-height: 400px) {
+	@media (max-width: 670px), (max-height: 585px) {
 		main {
 			border-radius: var(--border-radius);
 		}

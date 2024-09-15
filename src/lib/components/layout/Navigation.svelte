@@ -88,58 +88,54 @@
   
 <div class={displayMobileMenu?'openBackdrop backdrop':'backdrop'}></div>
 
-<!-- <div class="navbar"> -->
 <div class={displayMobileMenu?'openNav navbar':'navbar'}>
-<nav>
-<!-- <nav class={displayMobileMenu?'openNav':''}> -->
+	<nav>
+		<h1><a href="/">Fun&#8203;Kit</a></h1>
 
-	<h1><a href="/">Fun&#8203;Kit</a></h1>
+		<a href="#main" class="a11yLink">Skippa menyn</a>
 
-	<a href="#main" class="a11yLink">Skippa menyn</a>
+		{#await getPageMenu(currentMenu)}
+			<p>loading menu</p>	
+		{:then values} 
 
-	{#await getPageMenu(currentMenu)}
-		<p>loading menu</p>	
+		<ul>
+			{#await getPageHome(currentMenu)}
+				<MenuLink bind:displayMobileMenu={displayMobileMenu} currentPath={currentPath} slug="/" title="Hem" linkMenuJump={false} />
+			{:then value} 
+				{#if value.slug != "/"}
+					<MenuLink bind:displayMobileMenu={displayMobileMenu} currentPath={currentPath} slug={value.slug} title={value.title} linkMenuJump={false} />
+				{:else}
+					<MenuLink bind:displayMobileMenu={displayMobileMenu} currentPath={currentPath} slug={value.slug} title="Hem" linkMenuJump={false} />
+				{/if}
+			{/await}
 
-	{:then values} 
-	<ul>
-		{#await getPageHome(currentMenu)}
-			<MenuLink bind:displayMobileMenu={displayMobileMenu} currentPath={currentPath} slug="/" title="Hem" linkMenuJump={false} />
-		{:then value} 
-			{#if value.slug != "/"}
-				<MenuLink bind:displayMobileMenu={displayMobileMenu} currentPath={currentPath} slug={value.slug} title={value.title} linkMenuJump={false} />
-			{:else}
-				<MenuLink bind:displayMobileMenu={displayMobileMenu} currentPath={currentPath} slug={value.slug} title="Hem" linkMenuJump={false} />
-			{/if}
+			{#each values as linkData}
+				<MenuLink bind:displayMobileMenu={displayMobileMenu} currentPath={currentPath} slug={linkData.slug} title={linkData.title} linkMenuJump={false} />
+			{/each}
+
+			<!-- special paths -->
+			<MenuLink bind:displayMobileMenu={displayMobileMenu} currentPath={currentPath} slug={specialItems[0].slug} title={specialItems[0].title} linkMenuJump={true} />
+			<MenuLink bind:displayMobileMenu={displayMobileMenu} currentPath={currentPath} slug={specialItems[1].slug} title={specialItems[1].title} linkMenuJump={false} />
+
+			{#await getPageHome(currentMenu)}
+				<span></span>
+			{:then value} 
+				{#if value.slug != "/"}
+					<MenuLink bind:displayMobileMenu={displayMobileMenu} currentPath={currentPath} slug="/" title="Till startsidan" linkMenuJump={false} />
+				{/if}
+			{/await}
+		</ul>
+		
+		{:catch error}
+			<p>Something went wrong: {error.message}</p>
 		{/await}
+	</nav>
 
-		{#each values as linkData}
-			<MenuLink bind:displayMobileMenu={displayMobileMenu} currentPath={currentPath} slug={linkData.slug} title={linkData.title} linkMenuJump={false} />
-		{/each}
-
-		<!-- special paths -->
-		<MenuLink bind:displayMobileMenu={displayMobileMenu} currentPath={currentPath} slug={specialItems[0].slug} title={specialItems[0].title} linkMenuJump={true} />
-		<MenuLink bind:displayMobileMenu={displayMobileMenu} currentPath={currentPath} slug={specialItems[1].slug} title={specialItems[1].title} linkMenuJump={false} />
-
-		{#await getPageHome(currentMenu)}
-			<span></span>
-		{:then value} 
-			{#if value.slug != "/"}
-				<MenuLink bind:displayMobileMenu={displayMobileMenu} currentPath={currentPath} slug="/" title="Till startsidan" linkMenuJump={false} />
-			{/if}
-		{/await}
-	</ul>
-	
-	{:catch error}
-		<p>Something went wrong: {error.message}</p>
-	{/await}
-
-</nav>
-
-<aside class='connect'>
-	<p>Connecta:</p> 
-	<a target="_blank" href="https://www.facebook.com/profile.php?id=61557707468680"><img src="/icons/icons8-facebook.svg" alt="Facebook icon" class="iconBig" /></a>
-	<a target="_blank" href="https://discord.gg/P2zpnBYREr"><img src="/icons/icons8-discord-new.svg" alt="Discord icon" class="iconSmall" /></a>
-</aside>
+	<aside class='connect'>
+		<p>Connecta:</p> 
+		<a target="_blank" href="https://www.facebook.com/profile.php?id=61557707468680"><img src="/icons/icons8-facebook.svg" alt="Facebook icon" class="iconBig" /></a>
+		<a target="_blank" href="https://discord.gg/P2zpnBYREr"><img src="/icons/icons8-discord-new.svg" alt="Discord icon" class="iconSmall" /></a>
+	</aside>
 </div>
 
 
@@ -248,7 +244,7 @@
 	}
 
 
-	@media (max-width: 670px), (max-height: 400px) {
+	@media (max-width: 670px), (max-height: 585px) {
 
 		.navbar {
 			/* border: 1px solid orangered; */
@@ -269,7 +265,9 @@
 		
 		nav {
 			/* flex: 1 1 auto; */
-			height: min-content;
+			padding-top: 0;
+			height: 30dvh;
+			/* height: min-content; */
 			width: initial;
 			background-color: #fafafa;
 			border-top-left-radius:  var(--border-radius);
@@ -290,14 +288,15 @@
 		ul {
 			/* flex: 1 1 auto; */
 
-			margin-bottom: 1rem;
+			/* margin-bottom: 1rem; */
 			flex-direction: column;
 			flex-wrap: wrap;
-			height: 40dvh;
+			/* height: 35dvh; */
+			/* height: inherit; */
 		}
 		ul * {
 			/* width: 50%; */
-			flex: 1 1 auto;
+			/* flex: 1 1 auto; */
 		}
 
 
