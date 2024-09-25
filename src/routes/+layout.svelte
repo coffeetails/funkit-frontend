@@ -1,7 +1,35 @@
 <script lang="ts">
+    import { page } from "$app/stores";
 	import Navigation from "$lib/components/layout/Navigation.svelte";
-
+	let title = "Funkit";
+	let description = "🎡✨ Föreställ dig en magisk karusell där regnbågsfärgade droppar 🌀💧 hoppar och studsar som glada stjärnfall ⭐️💫! Blått som havsälvor som kittlar dina tår 🌊🧚, rött som små eldflugor som viskar hemligheter 🔥🦋, gult som solstrålar som dansar på ditt huvud ☀️🎩, och rosa som enhörningar som galopperar på sockervaddsmoln 🦄🍭! De virvlar ihop i en magisk cirkel 🔄, som ett kosmiskt disco 🪩🛸 där varje färg sjunger sin egen galna melodi 🎶🎨! Universum gör en glädjevolt 🤸‍♂️🌈, där varje liten droppe bidrar till en glittrande explosion av kärlek, skratt och ren magi 🎉💖🌟!";
+	let image = "https://images.vexels.com/media/users/3/142789/isolated/lists/2bfb04ad814c4995f0c537c68db5cd0b-multicolor-swirls-circle-logo.png";
 </script>
+
+<svelte:head>
+	<!-- 	Metadata	 -->
+	<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌸</text></svg>">
+	<title>{title}</title>
+	<meta name="description" content={description}>
+	<meta name="theme-color" content="#f02525">
+
+	<!--	 Facebook	 -->
+	<meta property="og_site_name" content=“Example.com”>
+	<meta property="og:url" content="https://www.example.com{$page.url.pathname.toString()}">
+	<meta property="og:type" content="website">
+	<meta property="og:title" content={title}>
+	<meta property="og:description" content={description}>
+	<meta property="og:image" content={image}>
+
+	<!-- 	Twitter / X 	-->
+	<meta name="twitter:card" content="summary_large_image"> <!-- Toggle for thumbnail size -->
+	<meta property="twitter:domain" content="example.com">
+	<meta property="twitter:url" content="https://www.example.com{$page.url.pathname.toString()}">
+	<meta name="twitter:title" content="{title}">
+	<meta name="twitter:description" content={description}>
+	<meta name="twitter:image" content={image}>
+	<meta name="twitter:site" content="@username" />
+</svelte:head>
 
 <div class="contentWrapper">
 	<Navigation />
