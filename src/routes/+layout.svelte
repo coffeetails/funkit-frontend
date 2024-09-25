@@ -2,8 +2,8 @@
     import { page } from "$app/stores";
 	import Navigation from "$lib/components/layout/Navigation.svelte";
 	let title = "Funkit";
-	let description = "🎡✨ Föreställ dig en magisk karusell där regnbågsfärgade droppar 🌀💧 hoppar och studsar som glada stjärnfall ⭐️💫! Blått som havsälvor som kittlar dina tår 🌊🧚, rött som små eldflugor som viskar hemligheter 🔥🦋, gult som solstrålar som dansar på ditt huvud ☀️🎩, och rosa som enhörningar som galopperar på sockervaddsmoln 🦄🍭! De virvlar ihop i en magisk cirkel 🔄, som ett kosmiskt disco 🪩🛸 där varje färg sjunger sin egen galna melodi 🎶🎨! Universum gör en glädjevolt 🤸‍♂️🌈, där varje liten droppe bidrar till en glittrande explosion av kärlek, skratt och ren magi 🎉💖🌟!";
-	let image = "https://images.vexels.com/media/users/3/142789/isolated/lists/2bfb04ad814c4995f0c537c68db5cd0b-multicolor-swirls-circle-logo.png";
+	let description = "✨ Funkit är en idéell förening med syfte att föra samman människor genom ett gemensamt intresse av olika sorters popkultur, så som spel, anime, böcker, och massor av andra spännande intressen! Föreningens plan är att en gång om året kunna arrangera VänCon, Nordens nyaste och mysigaste konvent där målet är att alla ska trivas oavsett vem man är.  🎉💖🌟!";
+	let image = "https://cdn.discordapp.com/attachments/1274041105918328926/1287404782180368404/IMG_0956.png?ex=66f56122&is=66f40fa2&hm=79e3e28fb71731ee276c9393e845d5ce5c414c92bd7e9408fc99dd365e77a44f&";
 </script>
 
 <svelte:head>
