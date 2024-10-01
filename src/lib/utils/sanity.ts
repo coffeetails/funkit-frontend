@@ -18,6 +18,19 @@ export const client = createClient({
 });
 
 
+export async function getSettings() {
+	return await client.fetch(
+		groq`*[_type == "settings"]{thumbnailImage, socialmedialinks}`
+	);
+}
+export async function getMetadata() {
+	return await client.fetch(
+		groq`*[_type == "settings"]{name, description, thumbnailImage, thumbnailBig, "color": themeColor.hex}`
+	);
+}
+
+
+
 export async function getLatestUpdate() {
 	return await client.fetch(
 		groq`*[_type == "updates"] | order(_createdAt desc) [0] {title, content, "created": _createdAt, "updated": _updatedAt, "slug": slug.current}`
