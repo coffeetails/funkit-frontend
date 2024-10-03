@@ -1,5 +1,6 @@
 <script lang="ts">
     import { page } from "$app/stores";
+    import { urlFor } from "$lib/utils/image";
     import { getMetadata } from "$lib/utils/sanity";
     
     let title = "Funkit";
@@ -11,31 +12,33 @@
 
 <svelte:head>
     {#await getMetadata() then metadata}
-    <!-- {console.log(metadata[0])} -->
-	<!-- 	Metadata	 -->
-	<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌸</text></svg>">
-	<title>{metadata[0].name}</title>
-	<meta name="description" content={metadata[0].description}>
-	<meta name="theme-color" content={metadata[0].color}>
-    
-	<!--	 Facebook	 -->
-	<meta property="og_site_name" content=“Example.com”>
-	<meta property="og:url" content="https://www.example.com{$page.url.pathname.toString()}">
-	<meta property="og:type" content="website">
-	<meta property="og:title" content={metadata[0].name}>
-	<meta property="og:description" content={metadata[0].description}>
-	<meta property="og:image" content={metadata[0].thumbnailImage.asset._ref}>
+		{console.log(metadata)}
+		<!-- 	Metadata	 -->
+		<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌸</text></svg>">
+		<title>{metadata.name}</title>
+		<meta name="description" content={metadata.description}>
+		<meta name="theme-color" content={metadata.color}>
+		
+		<!--	 Facebook	 -->
+		<meta property="og_site_name" content=“{metadata.domain}”>
+		<meta property="og:url" content="https://www.{metadata.domain}{$page.url.pathname.toString()}">
+		<meta property="og:type" content="website">
+		<meta property="og:title" content={metadata.name}>
+		<meta property="og:description" content={metadata.description}>
+		<meta property="og:image" content={urlFor(metadata.thumbnailImage).url()}>
 
-	<!-- 	Twitter / X 	-->
-	{#if metadata[0].thumbnailBig}
-    <meta name="twitter:card" content="summary_large_image">
-	{/if}
-	<meta property="twitter:domain" content="example.com">
-	<meta property="twitter:url" content="https://www.example.com{$page.url.pathname.toString()}">
-	<meta name="twitter:title" content="{metadata[0].name}">
-	<meta name="twitter:description" content={metadata[0].description}>
-	<meta name="twitter:image" content={image}>
-	<meta name="twitter:site" content="@username" />
+		<!-- 	Twitter / X 	-->
+		{#if metadata.thumbnailBig}
+			<meta name="twitter:card" content="summary_large_image">
+		{/if}
+		<meta property="twitter:domain" content="{metadata.domain}">
+		<meta property="twitter:url" content="https://www.{metadata.domain}{$page.url.pathname.toString()}">
+		<meta name="twitter:title" content="{metadata.name}">
+		<meta name="twitter:description" content={metadata.description}>
+		<meta name="twitter:image" content={image}>
+		{#if metadata.twittername}
+			<meta name="twitter:site" content="@username" />
+		{/if}
     {/await}
 
 </svelte:head>

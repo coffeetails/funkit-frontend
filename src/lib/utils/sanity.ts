@@ -25,7 +25,12 @@ export async function getSettings() {
 }
 export async function getMetadata() {
 	return await client.fetch(
-		groq`*[_type == "settings"]{name, description, thumbnailImage, thumbnailBig, "color": themeColor.hex}`
+		groq`*[_type == "settings"] [0] {name, description, domain, thumbnailImage, thumbnailBig, twittername, "color": themeColor.hex}`
+	);
+}
+export async function getMascot() {
+	return await client.fetch(
+		groq`*[_type == "settings"] [0] {thumbnailImage}`
 	);
 }
 
