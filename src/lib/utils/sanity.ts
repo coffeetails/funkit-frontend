@@ -18,23 +18,17 @@ export const client = createClient({
 });
 
 
-export async function getSettings() {
+export async function getSocialmedia() {
 	return await client.fetch(
-		groq`*[_type == "settings"]{thumbnailImage, socialmedialinks}`
+		groq`*[_type == "settings"] [0] {socialmedialinks}`
 	);
 }
-export async function getMetadata() {
-	return await client.fetch(
-		groq`*[_type == "settings"] [0] {name, description, domain, thumbnailImage, thumbnailBig, twittername, "color": themeColor.hex}`
-	);
-}
+
 export async function getMascot() {
 	return await client.fetch(
 		groq`*[_type == "settings"] [0] {thumbnailImage}`
 	);
 }
-
-
 
 export async function getLatestUpdate() {
 	return await client.fetch(

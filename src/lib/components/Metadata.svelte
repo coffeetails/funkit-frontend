@@ -1,13 +1,11 @@
 <script lang="ts">
     import { page } from "$app/stores";
-    import { urlFor } from "$lib/utils/image";
-    import { getMetadata } from "$lib/utils/sanity";
     
     let title = "Funkit";
 	let description = "Funkit är en idéell förening med syfte att föra samman människor genom ett gemensamt intresse av olika sorters popkultur, så som spel, anime, böcker, och massor av andra spännande intressen! Föreningens plan är att en gång om året kunna arrangera VänCon, Nordens nyaste och mysigaste konvent där målet är att alla ska trivas oavsett vem man är.  🎉💖🌟!";
 	let image = "/thumbnail.png";
 	let themeColor = "#f02525";
-	let thumbnailBig = false;
+	let thumbnailBig = true;
 	let domain = "funkit.vercel.app";
 	let twittername = "";
 </script>

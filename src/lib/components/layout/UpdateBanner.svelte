@@ -1,7 +1,8 @@
 <script lang="ts">
-    import { getLatestUpdate } from "$lib/utils/sanity";
+    import { getLatestUpdate, getMascot } from "$lib/utils/sanity";
     import { PortableText } from "@portabletext/svelte";
     import TextAreaShadow from "$lib/components/TextAreaShadow.svelte";
+    import { urlFor } from "$lib/utils/image";
 
 	function parseDate(rawDate: string | number | Date) {
 		let date = new Date(rawDate);
@@ -55,6 +56,9 @@
 		</a>
 		{/await}
 	<!-- <img src="https://picsum.photos/100" alt="mascot" /> -->
+	 {#await getMascot() then mascot }		
+		<img src={urlFor(mascot.thumbnailImage).url()} alt="Mascot, a phoenix" />
+	 {/await}
 </aside>
 
 <style>
