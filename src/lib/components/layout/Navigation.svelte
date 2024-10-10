@@ -4,6 +4,7 @@
     import Header from './Header.svelte';
     import MenuLink from '../MenuLink.svelte';
     import { browser } from '$app/environment';
+    import Connect from '../Connect.svelte';
 	
 	let currentPath = "";
 	let currentMenu = "";
@@ -22,17 +23,11 @@
 		
 		let currentHome = await getPageHome(getPathMenu($page.url.pathname));
 		window.localStorage.setItem('home', currentHome.title);
-		
-		// console.log("previousHome", previousHome);
-		// console.log("currentHome", currentHome.title);
-		// console.log("reload menu ", currentHome.title != previousHome);
-		
+
 		if(currentHome.title == previousHome) {
-			// console.log("Reload menu: false");
 			return false;
 		} else if(currentHome.title != previousHome) {
 			currentMenu = getPathMenu($page.url.pathname);
-			// console.log("Reload menu: true");
 			return true;
 		} else {
 			console.log("woah, that's weird");
@@ -40,7 +35,6 @@
 	}
 
 	$: reloadMenu();
-	// $: console.log("reloadMenu", reloadMenu());
 	
 	$: currentPath = getPathName($page.url.pathname);
 	
@@ -131,11 +125,7 @@
 		{/await}
 	</nav>
 
-	<aside class='connect'>
-		<p>Connecta med oss:</p>
-		<span><a target="_blank" href="https://www.facebook.com/profile.php?id=61557707468680"><img src="/icons/icons8-facebook.svg" alt="Facebook icon" class="iconBig" /></a>
-		<a target="_blank" href="https://discord.gg/P2zpnBYREr"><img src="/icons/icons8-discord-new.svg" alt="Discord icon" class="iconSmall" /></a><span>
-	</aside>
+	<Connect />
 </div>
 
 
@@ -149,16 +139,7 @@
 		left: 0;
 	}
 
-	/* nav { */
 	.navbar {
-		/* margin: 0.25rem;
-		border: var(--border-style);
-		border-radius: var(--small-border-radius);
-		border-top-left-radius: var(--border-radius);
-		border-bottom-left-radius: var(--border-radius);
-		padding: 0.5rem 1rem;
-		background-color: #fafafa75;
-		width: 14rem; */
 		display: flex;
 		flex-direction: column;
 	}
@@ -204,49 +185,8 @@
 		margin: 0;
 	}
 
-	.connect {
-		margin: 0.25rem;
-		border: var(--border-style);
-		border-radius: var(--small-border-radius);
-		border-bottom-left-radius: var(--border-radius);
-		padding: 0.5rem 1rem;
-		background-color: #fafafa75;
-		width: 14rem;
-
-		display: flex;
-		flex-direction: row;
-		flex-wrap: wrap;
-		align-items: center;
-	}
-	.connect p {
-		padding-right: 0.5rem;
-	}
 	span {
 		white-space: no-wrap;
-	}
-	.connect a {
-		border: none;
-		background: none;
-	}
-	.connect img {
-		border-radius: var(--small-border-radius);
-	}
-	.connect img:hover {
-		background-color: #fafafa9f;
-		border: 1px solid var(--black);
-	}
-
-	.iconBig {
-		height: 1.5rem;
-	} 
-	.iconBig:hover {
-		transform: scale(1.3,1.3);
-	}
-	.iconSmall {
-		height: 1.6rem;
-	}
-	.iconSmall:hover {
-		transform: scale(1.2,1.2);
 	}
 
 
@@ -278,13 +218,6 @@
 			background-color: #fafafa;
 			border-top-left-radius:  var(--border-radius);
 			border-top-right-radius:  var(--border-radius);
-		}
-		.connect {
-			/* flex: 1 1 auto; */
-			width: initial;
-			background-color: #fafafa;
-			border-bottom-left-radius:  var(--border-radius);
-			border-bottom-right-radius:  var(--border-radius);
 		}
 
 		nav >:nth-child(1) {

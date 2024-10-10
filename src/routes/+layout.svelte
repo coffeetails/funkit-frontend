@@ -11,7 +11,7 @@
 	<div class="yetAnotherWrapper">
 		<slot />
 		<span>
-			<a target="_blank" href="https://icons8.com/icons/forma-light">Icons</a> by <a target="_blank" href="https://icons8.com">Icons8</a>
+			
 		</span>
 	</div>
 </div>

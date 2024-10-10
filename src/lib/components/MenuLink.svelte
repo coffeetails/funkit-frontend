@@ -34,7 +34,7 @@
 	}
 
 	.active:before {
-		content: "🌸";
+		content: "🔥";
 		position: absolute;
 		left: -2rem;
 		height: 1.5rem;
