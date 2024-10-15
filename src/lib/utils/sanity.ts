@@ -38,7 +38,7 @@ export async function getLatestUpdate() {
 
 export async function getUpdate(slug: string) {
 	return await client.fetch(
-		groq`*[_type == "updates" && slug.current == "${slug}"] {title, content, "created": _createdAt, "updated": _updatedAt, "slug": slug.current}`
+		groq`*[_type == "updates" && slug.current == "${slug}"] {title, content, images, "created": _createdAt, "updated": _updatedAt, "slug": slug.current}`
 	);
 }
 

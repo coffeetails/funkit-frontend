@@ -13,18 +13,27 @@
 	}
 
     export let data: PageData;
-	console.log("page data",data);
+    let update = data.page[0]
+	console.log("page data", update);
+    let articleWidth;
 </script>
 
 <svelte:head>
-	<title>{data.page[0].title}</title>
+	<title>{update.title}</title>
 </svelte:head>
 
 <main id="main">
 	<div class="wrapper">
-		<article>
-			<h1 class="pageTitle">{data.page[0].title}</h1>
-			<PortableText value={data.page[0].content} />
+		<article bind:clientWidth={articleWidth}>
+			<h1 class="pageTitle">{update.title}</h1>
+            
+            {#each update.images as image}
+                <div class="image">
+                    <img src={urlFor(image.asset).width(Math.trunc(articleWidth*0.3)).url()} class='image {image.positionHorizontal} {image.positionVertical}' />
+                </div>
+            {/each}
+
+			<PortableText value={update.content} />
 		</article>
 		
 		<TextAreaShadow />
@@ -32,9 +41,9 @@
 
 	<div class="articleInfo">
 		<div class="publishInfo">
-			<p>Publicerad: {@html parseDate(data.page[0].created)}</p>
-			{#if data.page[0].created != data.page[0].updated}
-				<p>Uppdaterad: {@html parseDate(data.page[0].updated)}</p>
+			<p>Publicerad: {@html parseDate(update.created)}</p>
+			{#if update.created != update.updated}
+				<p>Uppdaterad: {@html parseDate(update.updated)}</p>
 			{/if}
 		</div>
 
@@ -76,6 +85,19 @@
 		padding: 0;
 		text-align: right;
 	}
+
+    img {
+        float: right;
+        clear: both;
+        object-fit: cover;
+        margin: 0.5rem;
+    }
+    .image:before {
+        content: "";
+        display: block;
+        float: right;
+        height: 25%; /* This value sets the y position of the image in the article tag */
+    }
 
 	@media (max-width: 670px), (max-height: 585px) {
 		main {
