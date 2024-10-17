@@ -5,6 +5,7 @@
     import TextAreaShadow from '$lib/components/TextAreaShadow.svelte';
     import type { PageData } from './$types';
     import ShareMedia from '$lib/components/ShareMedia.svelte';
+    import PositionedImage from '$lib/components/PositionedImage.svelte';
     
 	function parseDate(rawDate: string | number | Date) {
 		let date = new Date(rawDate);
@@ -28,9 +29,7 @@
 			<h1 class="pageTitle">{update.title}</h1>
             
             {#each update.images as image}
-                <div class="image">
-                    <img src={urlFor(image.asset).width(Math.trunc(articleWidth*0.3)).url()} class='image {image.positionHorizontal} {image.positionVertical}' />
-                </div>
+				<PositionedImage parentWidth={articleWidth} imageData={image} />
             {/each}
 
 			<PortableText value={update.content} />
@@ -85,19 +84,6 @@
 		padding: 0;
 		text-align: right;
 	}
-
-    img {
-        float: right;
-        clear: both;
-        object-fit: cover;
-        margin: 0.5rem;
-    }
-    .image:before {
-        content: "";
-        display: block;
-        float: right;
-        height: 25%; /* This value sets the y position of the image in the article tag */
-    }
 
 	@media (max-width: 670px), (max-height: 585px) {
 		main {
