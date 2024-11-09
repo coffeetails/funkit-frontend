@@ -38,7 +38,7 @@ export async function getLatestUpdate() {
 
 export async function getUpdate(slug: string) {
 	return await client.fetch(
-		groq`*[_type == "updates" && slug.current == "${slug}"] {title, content, images, "created": _createdAt, "updated": _updatedAt, "slug": slug.current}`
+		groq`*[_type == "updates" && slug.current == "${slug}"] {title, content, "created": _createdAt, "updated": _updatedAt, "slug": slug.current}`
 	);
 }
 
@@ -147,32 +147,4 @@ export async function getPageMenu(currentPageSlug: string) {
 	return await client.fetch(
 		groq`*[_type == "page" && parentPage->slug.current == "/"]{"title": title, "slug": slug.current}`
 	);
-}
-
-
-export async function getSponsors() {
-	return await client.fetch(
-		groq`*[_type == "sponsor"]{
-			name,
-  			"imageSrc": image.asset->url,
-            "imageAlt":image.alt,
-			details,
-			link}`
-	);
-}
-
-
-
-
-export async function getPosts() {
-	return await client.fetch(
-		groq`*[_type == "event" && defined(slug.current)]|order(date desc)`
-		// groq`*[_type == "event" && defined(slug.current)] | order(_createdAt desc)`
-	);
-}
-
-export async function getPost(slug: string) {
-	return await client.fetch(groq`*[_type == "event" && slug.current == $slug][0]`, {
-		slug
-	});
 }

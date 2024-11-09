@@ -30,8 +30,10 @@ body {
 
 main {
     position: relative;
-    max-height: var(--content-height);
+    /* max-height: var(--content-height); */
+    /* height: var(--content-height); */
     height: 100%;
+    max-height: 91dvh;
     margin: 0.25rem;
     border: var(--border-style);
     background-color: var(--white);

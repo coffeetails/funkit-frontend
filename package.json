@@ -37,6 +37,7 @@
 		"@sanity/image-url": "^1.0.2",
 		"@sanity/svelte-loader": "^1.11.33",
 		"@sanity/types": "^3.52.2",
-		"groq": "^3.52.2"
+		"groq": "^3.52.2",
+		"svelte-styled-system": "^0.0.5"
 	}
 }

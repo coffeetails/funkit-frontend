@@ -28,7 +28,7 @@
 		border-radius: var(--small-border-radius);
 		border-bottom-left-radius: var(--border-radius);
 		padding: 0.5rem 1rem;
-		background-color: #fafafa75;
+		background-color: var(--white-transparent);
 		width: 14rem;
 
 		display: flex;
@@ -59,14 +59,14 @@
         align-items: center;
 	}
     a:hover {
-        background-color: #fafafa;
+        background-color: var(--white);
     }
 
 
 	@media (max-width: 670px), (max-height: 585px) {
         .connect {
 			width: initial;
-			background-color: #fafafa;
+			background-color: var(--white);
 			border-bottom-left-radius:  var(--border-radius);
 			border-bottom-right-radius:  var(--border-radius);
 		}

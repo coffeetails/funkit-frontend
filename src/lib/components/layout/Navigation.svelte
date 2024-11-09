@@ -151,7 +151,7 @@
 		border-radius: var(--small-border-radius);
 		border-top-left-radius: var(--border-radius);
 		padding: 0.5rem 1rem;
-		background-color: #fafafa75;
+		background-color: var(--white-transparent);
 		width: 14rem;
 		
 		display: flex;
@@ -215,7 +215,7 @@
 			height: 30dvh;
 			/* height: min-content; */
 			width: initial;
-			background-color: #fafafa;
+			background-color: var(--white);
 			border-top-left-radius:  var(--border-radius);
 			border-top-right-radius:  var(--border-radius);
 		}
