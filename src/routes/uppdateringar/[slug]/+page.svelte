@@ -127,7 +127,6 @@
 	}
 
 	.galleryWrapper {
-		border: 1px dashed green;
 		display: grid;
 		place-content: center;
 	}
