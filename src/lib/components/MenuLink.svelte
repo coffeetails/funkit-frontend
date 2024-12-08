@@ -34,7 +34,7 @@
 	}
 
 	.active:before {
-		content: "🔥";
+		content: "🌸";
 		position: absolute;
 		left: -2rem;
 		height: 1.5rem;
@@ -53,5 +53,18 @@
 		li {
 			margin-right: 3rem;
 		}
+
+		.active:before {
+		content: "🔥";
+		position: absolute;
+		left: -2rem;
+		height: 1.5rem;
+		width: 1.5rem;
+		text-align: center;
+		background-color: #fafafa;
+		border-radius: 2rem;
+		border: var(--border-style);
+		box-shadow: 0.1rem 0.3rem 0.5rem #0a0a0aae;
+	}
 	}
 </style>
