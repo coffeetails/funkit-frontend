@@ -15,7 +15,7 @@
     li {
 		position: relative;
         list-style-type: none;
-		padding: 0.25rem 0;
+		padding: 0.25rem;
 		margin: 0;
 	}
 	.linkMenuJump {
@@ -41,10 +41,13 @@
 			border: var(--border-style);
 			box-shadow: 0.1rem 0.3rem 0.5rem #0a0a0aae;
 		}
+		.active a:hover {
+			border-radius: 1rem 2px 2px 1rem;
+		}
 		.active:before {
 			content: " ";
 			position: absolute;
-			left: calc(var(--nav-width)*0.675);
+			left: calc(var(--nav-width)*0.699);
 			top: -60px;
 			height: 200px;
 			width: 78px;

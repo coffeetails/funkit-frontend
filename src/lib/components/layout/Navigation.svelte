@@ -150,7 +150,7 @@
 		border: var(--border-style);
 		border-radius: var(--small-border-radius);
 		border-top-left-radius: var(--border-radius);
-		padding: 0.5rem 1rem;
+		padding: 0.5rem 0.75rem;
 		background-color: var(--white-transparent);
 		width: var(--nav-width);
 		
@@ -178,7 +178,7 @@
 		flex-direction: column;
 		height: 100%;
 	}
-    ul, li {
+    ul {
 		position: relative;
         list-style-type: none;
 		padding: 0.25rem 0;
