@@ -11,15 +11,15 @@
 		<h1>Våra sponsorer</h1>
 		<figure class="school" >
 			<a href="https://www.regionvarmland.se/folkhogskolor/kristinehamns-folkhogskola">
-				<img src="/sponsors/kristinehamn_svart.png" alt=""/>
+				<img src="/sponsors/kristinehamn_svart.png" alt="Logga till kristinehamns folkhögskola"/>
 			</a>
 		</figure>
 		<figure class="dev">
 			<a href="https://kaffekod.nu/">
-				<img src="/sponsors/redpanda_netrunner_canva.png" alt="" />
+				<img src="/sponsors/redpanda_netrunner_canva.png" alt="En röd panda i en stor jacka i cyberpunk tema" />
 			</a>
 			<figcaption>
-				Utvecklare och ansvarig för webbsidan. Om något beter sig oväntant, kontakta mig på kaffekod@protonmail.com
+				Monica heter jag och är utvecklare och ansvarig för webbsidan. Om något beter sig oväntant, kontakta mig på kaffekod@protonmail.com
 			</figcaption>
 		</figure>
 	</article>
