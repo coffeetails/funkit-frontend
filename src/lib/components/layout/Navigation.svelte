@@ -152,7 +152,7 @@
 		border-top-left-radius: var(--border-radius);
 		padding: 0.5rem 1rem;
 		background-color: var(--white-transparent);
-		width: 14rem;
+		width: var(--nav-width);
 		
 		display: flex;
 		flex-direction: column;
