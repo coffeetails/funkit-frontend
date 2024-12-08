@@ -190,6 +190,12 @@
 	}
 
 
+	@media (min-width: 670px) AND (min-height: 585px) {
+		h1 {
+			margin: 3rem 0 5rem 0;
+		}
+	}
+
 	@media (max-width: 670px), (max-height: 585px) {
 
 		.navbar {
