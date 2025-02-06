@@ -133,7 +133,7 @@
 		border-radius: var(--border-radius);
 		box-shadow: 0.1rem 0.3rem 0.5rem #0a0a0aae; */
 		padding: 0.5rem;
-		width: 20%;
+		width: 30%;
 		min-width: 225px;
 
 		display: flex;
