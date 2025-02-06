@@ -3,8 +3,10 @@
     import TextAreaShadow from '$lib/components/TextAreaShadow.svelte';
     import type { PageData } from './$types';
     import GallerySlideshow from '$lib/components/GallerySlideshow.svelte';
+  import { urlFor } from '$lib/utils/image';
     
     export let data: PageData;
+	
 
 	let articleWidth: number;
 	let innerHeight: number;
@@ -72,6 +74,19 @@
 		<!-- FIXME: PortableText property missing -->
 		<PortableText value={data.page[0].content} />
 
+		{#if data.page[0].pageBuilder}
+			<div class="artistAlleyWrapper">
+				{#each data.page[0].pageBuilder as artistAlley}
+					<section class="artistAlleyCard">
+						<img src={urlFor(artistAlley.image.asset).width(200).height(200).url()} alt={artistAlley.alt ? artistAlley.alt : ""}/>
+						<h5>{artistAlley.title}</h5>
+						<a href={artistAlley.link}>{artistAlley.link.replace(/https:|http:|www.|\/\//gmi, "")}</a>
+						<p>{artistAlley.description}</p>
+					</section>
+				{/each}
+			</div>
+		{/if}
+
 		{#if centerBottomImgs.length > 0}
 			<div class="center galleryWrapper">
 				<GallerySlideshow gallery={centerBottomImgs} galleryWidth={bigImageWidth} galleryHeight={bigImageHeight} />
@@ -105,6 +120,28 @@
 	.galleryWrapper {
 		display: grid;
 		place-content: center;
+	}
+
+	.artistAlleyWrapper {
+		display: flex;
+		justify-content: space-evenly;
+		flex-wrap: wrap;
+		gap: 2rem;
+	}
+	.artistAlleyCard {
+		/* border: var(--border-style);
+		border-radius: var(--border-radius);
+		box-shadow: 0.1rem 0.3rem 0.5rem #0a0a0aae; */
+		padding: 0.5rem;
+		width: 20%;
+		min-width: 225px;
+
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+	.artistAlleyCard img {
+		border-radius: calc(var(--border-radius)*0.75);
 	}
 
 	@media (max-width: 670px), (max-height: 585px) {
