@@ -30,6 +30,12 @@ export async function getMascot() {
 	);
 }
 
+export async function getSponsors() {
+	return await client.fetch(
+		groq`*[_type == "sponsor"]`
+	);
+}
+
 export async function getLatestUpdate() {
 	return await client.fetch(
 		groq`*[_type == "updates"] | order(_createdAt desc) [0] {title, content, "created": _createdAt, "updated": _updatedAt, "slug": slug.current}`
