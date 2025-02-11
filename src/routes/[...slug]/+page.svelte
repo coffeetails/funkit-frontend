@@ -75,18 +75,17 @@
 		<PortableText value={data.page[0].content} />
 
 		{#if data.page[0].pageBuilder}
-			<div class="artistAlleyWrapper">
+			<div class="contributorWrapper">
+				{#each data.page[0].pageBuilder as contributor}
+					<section class="contributorCard">
+						<img src={urlFor(contributor.image.asset).width(200).height(200).url()} alt={contributor.alt ? contributor.alt : ""}/>
+						<h5>{contributor.title}</h5>
 
-				{#each data.page[0].pageBuilder as artistAlley}
-					<section class="artistAlleyCard">
-						<img src={urlFor(artistAlley.image.asset).width(200).height(200).url()} alt={artistAlley.alt ? artistAlley.alt : ""}/>
-						<h5>{artistAlley.title}</h5>
-
-						{#each artistAlley.links as link}
+						{#each contributor.links as link}
 							<a href={link}>{link.replace(/https:|http:|www.|\/\//gmi, "")}</a>
 						{/each}
-						
-						<p>{artistAlley.description}</p>
+
+						<p>{contributor.description}</p>
 					</section>
 				{/each}
 
@@ -128,13 +127,13 @@
 		place-content: center;
 	}
 
-	.artistAlleyWrapper {
+	.contributorWrapper {
 		display: flex;
 		justify-content: space-evenly;
 		flex-wrap: wrap;
 		gap: 2rem;
 	}
-	.artistAlleyCard {
+	.contributorCard {
 		/* border: var(--border-style);
 		border-radius: var(--border-radius);
 		box-shadow: 0.1rem 0.3rem 0.5rem #0a0a0aae; */
@@ -146,7 +145,7 @@
 		flex-direction: column;
 		align-items: center;
 	}
-	.artistAlleyCard img {
+	.contributorCard img {
 		border-radius: calc(var(--border-radius)*0.75);
 	}
 

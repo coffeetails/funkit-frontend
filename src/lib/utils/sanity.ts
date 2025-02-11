@@ -60,7 +60,7 @@ export async function getPage(slug: string) {
 		groq`*[_type == "page" && slug.current == "${slug}"] {
 			title, slug, imagesTop, content, imagesBottom,
 			parentPage->{title, slug},
-			pageBuilder[]->{title, image, alt, links, description}
+			pageBuilder[]->{_type, title, image, alt, links, description}
 		}`
 	);
 }
