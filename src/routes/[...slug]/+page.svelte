@@ -76,14 +76,20 @@
 
 		{#if data.page[0].pageBuilder}
 			<div class="artistAlleyWrapper">
+
 				{#each data.page[0].pageBuilder as artistAlley}
 					<section class="artistAlleyCard">
 						<img src={urlFor(artistAlley.image.asset).width(200).height(200).url()} alt={artistAlley.alt ? artistAlley.alt : ""}/>
 						<h5>{artistAlley.title}</h5>
-						<a href={artistAlley.link}>{artistAlley.link.replace(/https:|http:|www.|\/\//gmi, "")}</a>
+
+						{#each artistAlley.links as link}
+							<a href={link}>{link.replace(/https:|http:|www.|\/\//gmi, "")}</a>
+						{/each}
+						
 						<p>{artistAlley.description}</p>
 					</section>
 				{/each}
+
 			</div>
 		{/if}
 
