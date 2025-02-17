@@ -19,15 +19,33 @@
 			return;
 		}
 		
-		let previousHome = window.localStorage.getItem('home');
-		
+		// let previousHome = window.localStorage.getItem('home');
 		let currentHome = await getPageHome(getPathMenu($page.url.pathname));
-		window.localStorage.setItem('home', currentHome.title);
+		
+		
+		let previousHome = JSON.parse(window.localStorage.getItem('home') || "/");
+		
+		if(previousHome.slug != "/") {
+			previousHome.slug = "/" + previousHome.slug;
+		}
 
-		if(currentHome.title == previousHome) {
+		console.log("previousHome", previousHome);
+		console.log("currentHome", currentHome);
+		console.log("currentPath", currentPath);
+		console.log("currentMenu", currentMenu);
+		
+		
+		window.localStorage.setItem('home', JSON.stringify(currentHome));
+
+		if(currentHome.title == previousHome.title) {
+			// console.log(previousHome.slug, "→", getPathMenu(previousHome.slug));
+			currentMenu = getPathMenu(previousHome.slug);
+			console.log("true");
 			return false;
-		} else if(currentHome.title != previousHome) {
+		} else if(currentHome.title != previousHome.title) {
+			// console.log($page.url.pathname, "→", getPathMenu($page.url.pathname));
 			currentMenu = getPathMenu($page.url.pathname);
+			console.log("false");			
 			return true;
 		} else {
 			console.log("woah, that's weird");
@@ -56,6 +74,7 @@
 		});
 		
 		if(browser && !isSpecial) {
+
 			window.localStorage.setItem('path', path);
 		} else if(browser && isSpecial) {
 			let previousPath = window.localStorage.getItem('path');
@@ -65,7 +84,6 @@
 		} else if(!path || path == "/") {
 			return "/";
 		} 
-
 		return path.substring(1);
 	}
 

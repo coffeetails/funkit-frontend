@@ -7,7 +7,8 @@ export const load = (async ({ params }) => {
 
     const page = await getPage(params.slug);
 
-    console.log("page", page);
+    const time = new Date;
+    console.log(time.getHours() + ":" + time.getMinutes(), "page load", page);
     
     const data = await getSocialmedia();
     
