@@ -42,11 +42,21 @@
 		});
 	}
 	
+
 	let centerBottomImgs: any[] = [];
+	let leftBottomImgs: any[] = [];
+	let rightBottomImgs: any[] = [];
+
 	if(data.page[0].imagesBottom) {
 		data.page[0].imagesBottom.map((image: { asset: any; position: string[]; }) => {
-			if(image.asset) {
+			if(image.asset && image.position[0] == "center") {
 				centerBottomImgs.push(image);
+			}
+			else if(image.asset && image.position[0] == "left") {
+				leftBottomImgs.push(image);
+			}
+			else if(image.asset && image.position[0] == "right") {
+				rightBottomImgs.push(image);
 			}
 		});
 	}
@@ -86,6 +96,18 @@
 			{#if centerBottomImgs.length > 0}
 				<div class="center galleryWrapper">
 					<GallerySlideshow gallery={centerBottomImgs} galleryWidth={bigImageWidth} galleryHeight={bigImageHeight} />
+				</div>
+			{/if}
+
+			{#if leftBottomImgs.length > 0}
+				<div class="left galleryWrapper">
+					<GallerySlideshow gallery={leftBottomImgs} galleryWidth={bigImageWidth} galleryHeight={bigImageHeight} />
+				</div>
+			{/if}
+
+			{#if rightBottomImgs.length > 0}
+				<div class="right galleryWrapper">
+					<GallerySlideshow gallery={rightBottomImgs} galleryWidth={bigImageWidth} galleryHeight={bigImageHeight} />
 				</div>
 			{/if}
 		</article>
